@@ -1,6 +1,7 @@
 import React from 'react';
 import useFetchData from './useFetchData';
 import Search from './Search';
+import Map from './Map';
 
 const Home = () => {
 	const { status, hostels } = useFetchData();
@@ -14,8 +15,8 @@ const Home = () => {
 					<div className="col-md-3 my-5">
 						<Search hostels={hostels} />
 					</div>
-					<div className="col">
-						<h1>Map</h1>
+					<div className="col my-5">
+						<Map hostels={hostels} />
 					</div>
 				</div>
 			</div>

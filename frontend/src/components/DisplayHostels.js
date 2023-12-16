@@ -1,4 +1,3 @@
-// DisplayHostels.js
 import React from 'react';
 import Hostel from './Hostel';
 

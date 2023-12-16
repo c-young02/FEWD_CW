@@ -4,6 +4,7 @@ import Home from './components/Home';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
 	return (
