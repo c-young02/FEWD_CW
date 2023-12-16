@@ -3,7 +3,7 @@ import AverageStars from './AverageStars';
 import HostelModal from './HostelModal';
 import useModal from './useModal';
 
-const Hostel = ({ item, index, onHostelClick }) => {
+const Hostel = ({ item, onHostelClick }) => {
 	const { show, handleShow, handleClose } = useModal();
 
 	const handleClick = () => {

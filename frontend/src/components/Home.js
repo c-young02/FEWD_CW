@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import useFetchData from './useFetchData';
 import Search from './Search';
+import Trips from './Trips';
 import Map from './Map';
 
-const Home = () => {
+const Home = ({ viewMode }) => {
 	const { status, hostels } = useFetchData();
 	const [center, setCenter] = useState([57.8, -4.1]);
 
@@ -16,7 +17,11 @@ const Home = () => {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-md-3 my-5">
-						<Search hostels={hostels} onHostelClick={handleHostelClick} />
+						{viewMode === 'hostels' ? (
+							<Search hostels={hostels} onHostelClick={handleHostelClick} />
+						) : (
+							<Trips />
+						)}
 					</div>
 					<div className="col my-5">
 						<Map hostels={hostels} center={center} />

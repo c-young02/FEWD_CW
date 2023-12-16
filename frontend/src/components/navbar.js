@@ -1,8 +1,15 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import SignUp from './SignUp';
+import Login from './Login';
+import useModal from './useModal';
+import { Button } from 'react-bootstrap';
 
-function TopNavbar() {
+function TopNavbar({ viewMode, setViewMode }) {
+	const { show, handleClose } = useModal();
+
 	return (
 		<Navbar
 			collapseOnSelect
@@ -12,16 +19,22 @@ function TopNavbar() {
 			className="p-3"
 		>
 			<Container fluid>
-				<Navbar.Brand href="#home">Logo</Navbar.Brand>
+				<Navbar.Brand>Logo</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link href="#Hostels">Hostels</Nav.Link>
-						<Nav.Link href="#Trips">Trips</Nav.Link>
+						<Button
+							variant="outline-light"
+							onClick={() =>
+								setViewMode(viewMode === 'hostels' ? 'trips' : 'hostels')
+							}
+						>
+							Switch to {viewMode === 'hostels' ? 'Trips' : 'Hostels'}
+						</Button>
 					</Nav>
 					<Nav>
-						<Nav.Link href="#Login">Login</Nav.Link>
-						<Nav.Link href="#Register">Register</Nav.Link>
+						<Login show={show} handleClose={handleClose} />
+						<SignUp show={show} handleClose={handleClose} />
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
