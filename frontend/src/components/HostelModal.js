@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import Stars from './Stars';
+import AverageStars from './AverageStars';
 
 const HostelModal = ({ show, handleClose, hostel, index }) => {
 	return (
@@ -21,9 +21,9 @@ const HostelModal = ({ show, handleClose, hostel, index }) => {
 					<div className="d-flex">
 						<p className="mb-0">Rating:</p>
 						<span>&nbsp;</span>
-						<Stars position={index} />
+						<AverageStars data={hostel.ratings} />
 						<span>&nbsp;</span>
-						<p className="mb-0">Read Reviews (Num)</p>
+						<p className="mb-0">Read Reviews ({hostel.ratings.length})</p>
 					</div>
 					<Button variant="secondary">Create Review</Button>
 				</div>
