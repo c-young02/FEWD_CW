@@ -4,7 +4,7 @@ import Stars from './Stars';
 
 const HostelModal = ({ show, handleClose, hostel, index }) => {
 	return (
-		<Modal show={show} onHide={handleClose}>
+		<Modal show={show} onHide={handleClose} centered>
 			<Modal.Header closeButton>
 				<Modal.Title id="contained-modal-title-vcenter">
 					{hostel.name}

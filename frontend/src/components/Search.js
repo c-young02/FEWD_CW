@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DisplayHostels from './DisplayHostels';
 import CafeFilterToggle from './CafeToggle';
 
-const Search = ({ hostels }) => {
+const Search = ({ hostels, onHostelClick }) => {
 	const [searchField, setSearchField] = useState('');
 	const [cafeFilter, setCafeFilter] = useState(false);
 
@@ -38,7 +38,10 @@ const Search = ({ hostels }) => {
 			</div>
 
 			<hr />
-			<DisplayHostels hostels={cafeFilteredHostels} />
+			<DisplayHostels
+				hostels={cafeFilteredHostels}
+				onHostelClick={onHostelClick}
+			/>
 		</div>
 	);
 };

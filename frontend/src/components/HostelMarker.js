@@ -1,11 +1,12 @@
 import React from 'react';
-import { Marker } from 'react-leaflet';
+import { Marker, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import HostelModal from './HostelModal';
 import useModal from './useModal';
 
 const HostelMarker = ({ hostel }) => {
 	const { show, handleShow, handleClose } = useModal();
+	const map = useMap();
 
 	const icon = new Icon({
 		iconUrl: '/markerIcon.svg',
@@ -18,7 +19,10 @@ const HostelMarker = ({ hostel }) => {
 				position={[hostel.location.lat, hostel.location.long]}
 				icon={icon}
 				eventHandlers={{
-					click: handleShow,
+					click: () => {
+						handleShow();
+						map.panTo([hostel.location.lat, hostel.location.long]);
+					},
 				}}
 			/>
 			<HostelModal show={show} handleClose={handleClose} hostel={hostel} />

@@ -3,12 +3,17 @@ import Stars from './Stars';
 import HostelModal from './HostelModal';
 import useModal from './useModal';
 
-const Hostel = ({ item, index }) => {
+const Hostel = ({ item, index, onHostelClick }) => {
 	const { show, handleShow, handleClose } = useModal();
+
+	const handleClick = () => {
+		handleShow();
+		onHostelClick(item);
+	};
 
 	return (
 		<>
-			<tr onClick={handleShow} style={{ cursor: 'pointer' }}>
+			<tr onClick={handleClick} style={{ cursor: 'pointer' }}>
 				<td className="text-start fs-5">{item.name}</td>
 				<td className="text-start">
 					<Stars position={index} />
