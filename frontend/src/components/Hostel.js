@@ -16,7 +16,7 @@ const Hostel = ({ item, onHostelClick }) => {
 			<tr onClick={handleClick} style={{ cursor: 'pointer' }}>
 				<td className="text-start fs-5">{item.name}</td>
 				<td className="text-start">
-					<AverageStars data={item.ratings} />
+					<AverageStars data={item.reviews.map((review) => review.rating)} />
 				</td>
 			</tr>
 			<HostelModal show={show} handleClose={handleClose} hostel={item} />

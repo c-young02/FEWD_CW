@@ -21,9 +21,11 @@ const HostelModal = ({ show, handleClose, hostel, index }) => {
 					<div className="d-flex">
 						<p className="mb-0">Rating:</p>
 						<span>&nbsp;</span>
-						<AverageStars data={hostel.ratings} />
+						<AverageStars
+							data={hostel.reviews.map((review) => review.rating)}
+						/>
 						<span>&nbsp;</span>
-						<p className="mb-0">Read Reviews ({hostel.ratings.length})</p>
+						<p className="mb-0">Read Reviews ({hostel.reviews.length})</p>
 					</div>
 					<Button variant="secondary">Create Review</Button>
 				</div>

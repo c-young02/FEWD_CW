@@ -5,10 +5,6 @@ const trip = new tripDAO({ filename: 'trips.db', autoload: true });
 const utils = require('../lib/utils');
 const db = require('../config/users');
 
-exports.newList = function (req, res) {
-	hostel.init();
-	res.redirect('/');
-};
 exports.listHostel = function (req, res) {
 	hostel
 		.getAllEntries()

@@ -5,9 +5,8 @@ const passport = require('passport');
 
 router.get('/hostels', controller.listHostel);
 router.post('/addTrip', controller.addTrip);
-router.get('/new', controller.newList);
 router.get(
-	'/viewTrips',
+	'/trips',
 	passport.authenticate('jwt', { session: false }),
 	controller.listTrips
 );
