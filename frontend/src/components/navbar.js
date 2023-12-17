@@ -23,14 +23,15 @@ function TopNavbar({ viewMode, setViewMode }) {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Button
-							variant="outline-light"
+						<span
+							className="mx-3"
 							onClick={() =>
 								setViewMode(viewMode === 'hostels' ? 'trips' : 'hostels')
 							}
+							style={{ cursor: 'pointer', color: 'white' }}
 						>
-							Switch to {viewMode === 'hostels' ? 'Trips' : 'Hostels'}
-						</Button>
+							View {viewMode === 'hostels' ? 'Trips' : 'Hostels'}
+						</span>
 					</Nav>
 					<Nav>
 						<Login show={show} handleClose={handleClose} />
