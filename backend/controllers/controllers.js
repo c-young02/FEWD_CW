@@ -1,7 +1,7 @@
 const hostelDAO = require('../models/hostelModel');
 const hostel = new hostelDAO({ filename: 'hostel.db', autoload: true });
-const orderDAO = require('../models/tripsModel');
-const order = new orderDAO({ filename: 'orders.db', autoload: true });
+const tripDAO = require('../models/tripsModel');
+const trip = new tripDAO({ filename: 'trips.db', autoload: true });
 const utils = require('../lib/utils');
 const db = require('../config/users');
 
@@ -29,7 +29,7 @@ exports.listHostel = function (req, res) {
 };
 
 exports.listTrips = function (req, res) {
-	order
+	trip
 		.getAllEntries()
 		.then((list) => {
 			res.json(list);
@@ -40,7 +40,7 @@ exports.listTrips = function (req, res) {
 };
 exports.addTrip = function (req, res) {
 	console.log('req body to add to database : ', req.body);
-	order.addEntry(req.body).catch((err) => {
+	trip.addEntry(req.body).catch((err) => {
 		console.log('promise rejected', err);
 	});
 	res.redirect('/');

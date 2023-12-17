@@ -7,9 +7,9 @@ router.get('/hostels', controller.listHostel);
 router.post('/addTrip', controller.addTrip);
 router.get('/new', controller.newList);
 router.get(
-	'/viewOrders',
+	'/viewTrips',
 	passport.authenticate('jwt', { session: false }),
-	controller.listOrders
+	controller.listTrips
 );
 
 router.post('/login', controller.processLogin);
