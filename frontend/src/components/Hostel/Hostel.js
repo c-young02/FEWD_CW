@@ -1,6 +1,6 @@
 import React from 'react';
 import AverageStars from '../Stars/AverageStars';
-import HostelModal from '../Hostel/HostelModal';
+import HostelModal from '../HostelModal/HostelModal';
 import useModal from '../common/useModal';
 
 const Hostel = ({ item, onHostelClick }) => {
