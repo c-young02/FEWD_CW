@@ -9,12 +9,16 @@ import useModal from '../common/useModal';
 function TopNavbar({ viewMode, setViewMode }) {
 	const { show, handleClose } = useModal();
 
+	const toggleViewMode = () => {
+		setViewMode(viewMode === 'hostels' ? 'trips' : 'hostels');
+	};
+
 	return (
 		<Navbar
 			collapseOnSelect
 			expand="lg"
 			bg="dark"
-			data-bs-theme="dark"
+			variant="dark"
 			className="p-3"
 		>
 			<Container fluid>
@@ -22,15 +26,9 @@ function TopNavbar({ viewMode, setViewMode }) {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<span
-							className="mx-3"
-							onClick={() =>
-								setViewMode(viewMode === 'hostels' ? 'trips' : 'hostels')
-							}
-							style={{ cursor: 'pointer', color: 'white' }}
-						>
+						<Nav.Link onClick={toggleViewMode} className="text-light">
 							View {viewMode === 'hostels' ? 'Trips' : 'Hostels'}
-						</span>
+						</Nav.Link>
 					</Nav>
 					<Nav>
 						<Login show={show} handleClose={handleClose} />

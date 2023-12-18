@@ -3,6 +3,7 @@ import useFetchData from '../common/useFetchData';
 import Search from '../Hostel/Search';
 import Trips from '../Trips/Trips';
 import Map from '../Map/Map';
+import Loading from '../common/Loading';
 
 const Home = ({ viewMode }) => {
 	const { status, hostels } = useFetchData();
@@ -30,7 +31,7 @@ const Home = ({ viewMode }) => {
 			</div>
 		);
 	} else {
-		return <p>Loading...</p>;
+		return <Loading />;
 	}
 };
 

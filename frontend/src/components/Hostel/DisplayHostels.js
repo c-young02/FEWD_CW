@@ -12,11 +12,10 @@ const DisplayHostels = ({ hostels, onHostelClick }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{hostels.map((hostel, index) => (
+					{hostels.map((hostel) => (
 						<Hostel
-							key={index}
+							key={hostel.id}
 							item={hostel}
-							index={index}
 							onHostelClick={onHostelClick}
 						/>
 					))}

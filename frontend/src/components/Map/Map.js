@@ -9,6 +9,12 @@ const ChangeView = ({ center }) => {
 };
 
 const Map = ({ hostels, center }) => {
+	const initializeMap = (hostels) => {
+		return hostels.map((hostel) => (
+			<HostelMarker key={hostel.id} hostel={hostel} />
+		));
+	};
+
 	return (
 		<MapContainer
 			center={[57.8, -4.1]}
@@ -21,10 +27,7 @@ const Map = ({ hostels, center }) => {
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
-
-			{hostels.map((hostel) => (
-				<HostelMarker key={hostel.id} hostel={hostel} />
-			))}
+			{initializeMap(hostels)}
 		</MapContainer>
 	);
 };

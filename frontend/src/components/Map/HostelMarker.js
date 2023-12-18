@@ -13,16 +13,18 @@ const HostelMarker = ({ hostel }) => {
 		iconSize: [40, 40],
 	});
 
+	const handleClick = () => {
+		handleShow();
+		map.panTo([hostel.location.lat, hostel.location.long]);
+	};
+
 	return (
 		<>
 			<Marker
 				position={[hostel.location.lat, hostel.location.long]}
 				icon={icon}
 				eventHandlers={{
-					click: () => {
-						handleShow();
-						map.panTo([hostel.location.lat, hostel.location.long]);
-					},
+					click: handleClick,
 				}}
 			/>
 			<HostelModal show={show} handleClose={handleClose} hostel={hostel} />

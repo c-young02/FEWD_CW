@@ -9,9 +9,14 @@ const Reviews = ({ reviews, activeKey, setActiveKey }) => (
 			setActiveKey(eventKey !== activeKey ? eventKey : null)
 		}
 	>
-		{reviews.map((review, index) => (
-			<Review key={index} review={review} eventKey={index.toString()} />
-		))}
+		{reviews.length > 0 ? (
+			reviews.map((review, index) => (
+				<Review key={index} review={review} eventKey={index.toString()} />
+			))
+		) : (
+			<p>No reviews found.</p>
+		)}
 	</Accordion>
 );
+
 export default Reviews;

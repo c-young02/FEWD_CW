@@ -7,7 +7,7 @@ const SearchInput = ({ value, onChange }) => {
 			type="text"
 			placeholder="Search ..."
 			value={value}
-			onChange={(e) => onChange(e.target.value)}
+			onChange={({ target: { value } }) => onChange(value)}
 		/>
 	);
 };

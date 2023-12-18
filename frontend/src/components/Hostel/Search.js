@@ -12,14 +12,18 @@ const Search = ({ hostels, onHostelClick }) => {
 		setCafeFilter(value);
 	};
 
-	const filteredHostels = hostels.filter((entry) => {
-		const lowerCaseSearch = searchField.toLowerCase();
-		return entry.name.toLowerCase().includes(lowerCaseSearch);
-	});
+	const filterHostels = () => {
+		let filteredHostels = hostels.filter((entry) => {
+			const lowerCaseSearch = searchField.toLowerCase();
+			return entry.name.toLowerCase().includes(lowerCaseSearch);
+		});
 
-	const cafeFilteredHostels = cafeFilter
-		? filteredHostels.filter((entry) => entry.cafe)
-		: filteredHostels;
+		if (cafeFilter) {
+			filteredHostels = filteredHostels.filter((entry) => entry.cafe);
+		}
+
+		return filteredHostels;
+	};
 
 	return (
 		<div>
@@ -33,10 +37,7 @@ const Search = ({ hostels, onHostelClick }) => {
 			</Row>
 
 			<hr />
-			<DisplayHostels
-				hostels={cafeFilteredHostels}
-				onHostelClick={onHostelClick}
-			/>
+			<DisplayHostels hostels={filterHostels()} onHostelClick={onHostelClick} />
 		</div>
 	);
 };
