@@ -1,10 +1,11 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import AverageStars from './AverageStars';
+import AverageStars from '../Stars/AverageStars';
+import HostelReviews from '../ReviewModal/HostelReviews';
 
-const HostelModal = ({ show, handleClose, hostel, index }) => {
+const HostelModal = ({ show, handleClose, hostel }) => {
 	return (
-		<Modal show={show} onHide={handleClose} centered>
+		<Modal show={show} onHide={handleClose} size="lg" centered>
 			<Modal.Header closeButton>
 				<Modal.Title id="contained-modal-title-vcenter">
 					{hostel.name}
@@ -16,7 +17,7 @@ const HostelModal = ({ show, handleClose, hostel, index }) => {
 				<p className="mb-0">Phone: {hostel.phone}</p>
 				<p className="mb-0">Email: {hostel.email}</p>
 				<p>Cafe: {hostel.cafe ? 'Yes' : 'No'}</p>
-				<p className="mb-0">Description: {hostel.description}</p>
+				<p>Description: {hostel.description}</p>
 				<div className="d-flex align-items-center justify-content-between">
 					<div className="d-flex">
 						<p className="mb-0">Rating:</p>
@@ -25,7 +26,7 @@ const HostelModal = ({ show, handleClose, hostel, index }) => {
 							data={hostel.reviews.map((review) => review.rating)}
 						/>
 						<span>&nbsp;</span>
-						<p className="mb-0">Read Reviews ({hostel.reviews.length})</p>
+						<HostelReviews hostel={hostel} />
 					</div>
 					<Button variant="secondary">Create Review</Button>
 				</div>

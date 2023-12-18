@@ -2,10 +2,9 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import SignUp from './SignUp';
-import Login from './Login';
-import useModal from './useModal';
-import { Button } from 'react-bootstrap';
+import SignUp from '../Authentication/SignUp';
+import Login from '../Authentication/Login';
+import useModal from '../common/useModal';
 
 function TopNavbar({ viewMode, setViewMode }) {
 	const { show, handleClose } = useModal();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Marker, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
-import HostelModal from './HostelModal';
-import useModal from './useModal';
+import HostelModal from '../Hostel/HostelModal';
+import useModal from '../common/useModal';
 
 const HostelMarker = ({ hostel }) => {
 	const { show, handleShow, handleClose } = useModal();

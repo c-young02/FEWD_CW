@@ -24,11 +24,17 @@ class Hostel {
 			location: { lat: 57.543799, long: -5.504566 },
 			cafe: true,
 			reviews: [
-				{ reviewer: 'anon1', review: 'Great location', rating: 4 },
+				{
+					reviewer: 'anon1',
+					review: 'Great location',
+					rating: 4,
+					date: '01/01/2023',
+				},
 				{
 					reviewer: 'anon2',
 					review: 'Very comfortable accommodation',
 					rating: 4,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -48,6 +54,7 @@ class Hostel {
 					reviewer: 'anon',
 					review: 'Very handy for the city centre',
 					rating: 4,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -63,9 +70,24 @@ class Hostel {
 			location: { lat: 57.732262, long: -5.759794 },
 			cafe: false,
 			reviews: [
-				{ reviewer: 'anon1', review: 'Lovely views', rating: 4 },
-				{ reviewer: 'anon2', review: 'Dog-friendly hostel', rating: 4 },
-				{ reviewer: 'anon3', review: 'Enjoyed the wee breakfast', rating: 4 },
+				{
+					reviewer: 'anon1',
+					review: 'Lovely views',
+					rating: 4,
+					date: '01/01/2023',
+				},
+				{
+					reviewer: 'anon2',
+					review: 'Dog-friendly hostel',
+					rating: 4,
+					date: '01/01/2023',
+				},
+				{
+					reviewer: 'anon3',
+					review: 'Enjoyed the wee breakfast',
+					rating: 4,
+					date: '01/01/2023',
+				},
 			],
 		});
 		this.hostel.insert({
@@ -84,11 +106,13 @@ class Hostel {
 					reviewer: 'anon',
 					review: 'Muy buen alojamiento, excelente ubicación',
 					rating: 5,
+					date: '01/01/2023',
 				},
 				{
 					reviewer: 'anon',
 					review: 'Muy buen alojamiento, excelente ubicación',
 					rating: 3,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -108,6 +132,7 @@ class Hostel {
 					reviewer: 'anon1',
 					review: 'Not really on the NC500, but nice anyway',
 					rating: 4,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -127,11 +152,13 @@ class Hostel {
 					reviewer: 'anon1',
 					review: 'This hostel is the best thing ever in the entire world',
 					rating: 4,
+					date: '01/01/2023',
 				},
 				{
 					reviewer: 'anon2',
 					review: 'Fasgadh bho othail is beatha làitheil',
 					rating: 4,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -151,8 +178,9 @@ class Hostel {
 					reviewer: 'anon1',
 					review: 'Nice garden, suitable for outside eating',
 					rating: 4,
+					date: '01/01/2023',
 				},
-				{ reviewer: 'anon2', review: 'Braw!', rating: 4 },
+				{ reviewer: 'anon2', review: 'Braw!', rating: 4, date: '01/01/2023' },
 			],
 		});
 		this.hostel.insert({
@@ -167,9 +195,24 @@ class Hostel {
 			location: { lat: 57.452662, long: -5.802272 },
 			cafe: false,
 			reviews: [
-				{ reviewer: 'anon1', review: 'Keskellä ei mitään', rating: 5 },
-				{ reviewer: 'anon2', review: '아무데도 없는 가운데', rating: 3 },
-				{ reviewer: 'anon3', review: 'Katikati ya mahali', rating: 4 },
+				{
+					reviewer: 'anon1',
+					review: 'Keskellä ei mitään',
+					rating: 5,
+					date: '01/01/2023',
+				},
+				{
+					reviewer: 'anon2',
+					review: '아무데도 없는 가운데',
+					rating: 3,
+					date: '01/01/2023',
+				},
+				{
+					reviewer: 'anon3',
+					review: 'Katikati ya mahali',
+					rating: 4,
+					date: '01/01/2023',
+				},
 			],
 		});
 		this.hostel.insert({
@@ -183,7 +226,14 @@ class Hostel {
 				'Winning silver in the The Great Outdoors Magazine awards for accommodation - Achmelvich Beach Youth Hostel sits on the NC500, beside a beautiful, sheltered white sandy beach, close to the iconic mountain of Suilven. This small and friendly hostel provides a relaxing base to explore miles of unspoilt coastline and discover quiet secluded beaches, crystal clear waters and abundant wildlife.',
 			location: { lat: 58.168936, long: -5.304672 },
 			cafe: true,
-			reviews: [{ reviewer: 'anon', review: 'Quite good', rating: 3 }],
+			reviews: [
+				{
+					reviewer: 'anon',
+					review: 'Quite good',
+					rating: 3,
+					date: '01/01/2023',
+				},
+			],
 		});
 		this.hostel.insert({
 			id: '10',
@@ -197,11 +247,17 @@ class Hostel {
 			location: { lat: 57.682264, long: -2.683269 },
 			cafe: true,
 			reviews: [
-				{ reviewer: 'anon1', review: 'Very up to date', rating: 2 },
+				{
+					reviewer: 'anon1',
+					review: 'Very up to date',
+					rating: 2,
+					date: '01/01/2023',
+				},
 				{
 					reviewer: 'anon2',
 					review: 'Off the main tourist track so quiet but some great beaches',
 					rating: 5,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -221,9 +277,20 @@ class Hostel {
 					reviewer: 'anon1',
 					review: 'Disappointed not to see Nessie',
 					rating: 4,
+					date: '01/01/2023',
 				},
-				{ reviewer: 'anon2', review: 'Great location, great views', rating: 5 },
-				{ reviewer: 'anon3', review: 'Quite handy for Inverness', rating: 4 },
+				{
+					reviewer: 'anon2',
+					review: 'Great location, great views',
+					rating: 5,
+					date: '01/01/2023',
+				},
+				{
+					reviewer: 'anon3',
+					review: 'Quite handy for Inverness',
+					rating: 4,
+					date: '01/01/2023',
+				},
 			],
 		});
 		this.hostel.insert({
@@ -238,16 +305,23 @@ class Hostel {
 			location: { lat: 57.23236, long: -5.1831 },
 			cafe: false,
 			reviews: [
-				{ reviewer: 'anon1', review: 'بالتأكيد في وسط اللا مكان', rating: 4 },
+				{
+					reviewer: 'anon1',
+					review: 'بالتأكيد في وسط اللا مكان',
+					rating: 4,
+					date: '01/01/2023',
+				},
 				{
 					reviewer: 'anon2',
 					review: 'Absolutamente no meio do nada',
 					rating: 2,
+					date: '01/01/2023',
 				},
 				{
 					reviewer: 'anon3',
 					review: 'Απολύτως στη μέση του πουθενά',
 					rating: 4,
+					date: '01/01/2023',
 				},
 			],
 		});
@@ -280,8 +354,14 @@ class Hostel {
 					reviewer: 'anon1',
 					review: 'Not really on the NC500, but nice anyway',
 					rating: 3,
+					date: '01/01/2023',
 				},
-				{ reviewer: 'anon2', review: 'This is a great hostel!', rating: 3 },
+				{
+					reviewer: 'anon2',
+					review: 'This is a great hostel!',
+					rating: 3,
+					date: '01/01/2023',
+				},
 			],
 		});
 		this.hostel.insert({
@@ -300,22 +380,26 @@ class Hostel {
 					reviewer: 'anon1',
 					review: 'Great live music and atmosphere',
 					rating: 5,
+					date: '01/01/2023',
 				},
 				{
 					reviewer: 'anon2',
 					review:
 						'Great value breakfasts, home-cooked evening meals and packed lunches',
 					rating: 4,
+					date: '01/01/2023',
 				},
 				{
 					reviewer: 'anon3',
 					review: 'Some kind of big loch thing nearby',
 					rating: 3,
+					date: '01/01/2023',
 				},
 				{
 					reviewer: 'anon4',
 					review: 'Got great photos of the monster, it totally exists',
 					rating: 4,
+					date: '01/01/2023',
 				},
 			],
 		});

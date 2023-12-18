@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TopNavbar from './components/navbar';
-import Home from './components/Home';
+import TopNavbar from './components/Navbar/navbar';
+import Home from './components/Home/Home';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';

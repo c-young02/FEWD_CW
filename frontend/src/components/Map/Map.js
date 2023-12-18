@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import HostelMarker from './HostelMarker';
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import useFetchData from './useFetchData';
-import Search from './Search';
-import Trips from './Trips';
-import Map from './Map';
+import useFetchData from '../common/useFetchData';
+import Search from '../Hostel/Search';
+import Trips from '../Trips/Trips';
+import Map from '../Map/Map';
 
 const Home = ({ viewMode }) => {
 	const { status, hostels } = useFetchData();

@@ -1,7 +1,7 @@
 import React from 'react';
-import AverageStars from './AverageStars';
-import HostelModal from './HostelModal';
-import useModal from './useModal';
+import AverageStars from '../Stars/AverageStars';
+import HostelModal from '../Hostel/HostelModal';
+import useModal from '../common/useModal';
 
 const Hostel = ({ item, onHostelClick }) => {
 	const { show, handleShow, handleClose } = useModal();
