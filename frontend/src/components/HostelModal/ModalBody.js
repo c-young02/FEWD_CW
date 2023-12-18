@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import HostelInfo from './HostelInfo';
 import Rating from './Rating';
 import ReviewSection from './ReviewSection';
@@ -17,10 +17,21 @@ const ModalBody = ({
 	<Modal.Body>
 		<HostelInfo hostel={hostel} />
 
-		<Rating reviews={hostel.reviews} />
-		<span className="mb-0" role="button" onClick={toggleReviews}>
-			{showReviews ? 'Hide Reviews ' : 'View Reviews '}({hostel.reviews.length})
-		</span>
+		<div className="d-flex align-items-center justify-content-between">
+			<div className="d-flex">
+				<Rating reviews={hostel.reviews} />
+				<span
+					className="mt-3 mx-3 text-decoration-underline"
+					role="button"
+					onClick={toggleReviews}
+				>
+					{showReviews ? 'Hide Reviews ' : 'View Reviews '}(
+					{hostel.reviews.length})
+				</span>
+			</div>
+			<Button variant="secondary">Create Review</Button>
+		</div>
+
 		{showReviews && (
 			<ReviewSection
 				searchField={searchField}
