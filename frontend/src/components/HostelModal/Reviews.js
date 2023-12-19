@@ -11,7 +11,9 @@ const Reviews = ({ reviews, activeKey, setActiveKey }) => (
 	>
 		{reviews.length > 0 ? (
 			reviews.map((review, index) => (
-				<Review key={index} review={review} eventKey={index.toString()} />
+				<div className="mb-2">
+					<Review key={index} review={review} eventKey={index.toString()} />
+				</div>
 			))
 		) : (
 			<p>No reviews found.</p>

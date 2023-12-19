@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import AverageStars from '../Stars/AverageStars';
 
 const Rating = ({ reviews }) => {

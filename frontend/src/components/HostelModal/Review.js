@@ -6,12 +6,13 @@ const Review = ({ review: { reviewer, date, rating, review }, eventKey }) => {
 	return (
 		<Accordion.Item eventKey={eventKey}>
 			<Accordion.Header>
-				<h5>{reviewer}</h5> <h5 className="mx-5">{date}</h5>
-				<h5>
+				<h5>{reviewer}</h5>
+				<h5 className="mx-2">
 					<StarRating average={rating} />
 				</h5>
 			</Accordion.Header>
 			<Accordion.Body>
+				<p> Reviewed on: {date}</p>
 				<p>{review}</p>
 			</Accordion.Body>
 		</Accordion.Item>

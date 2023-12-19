@@ -12,7 +12,7 @@ const ReviewSection = ({
 }) => (
 	<>
 		<hr />
-		<InputGroup className="p-3">
+		<InputGroup className="my-3">
 			<SearchInput value={searchField} onChange={setSearchField} />
 		</InputGroup>
 		<Reviews

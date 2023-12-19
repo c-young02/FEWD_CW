@@ -2,6 +2,10 @@ import React from 'react';
 import Hostel from './Hostel';
 
 const DisplayHostels = ({ hostels, onHostelClick }) => {
+	if (hostels.length === 0) {
+		return <p>No hostels found.</p>;
+	}
+
 	return (
 		<div className="table-responsive">
 			<table className="table table-hover">
