@@ -2,8 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import SignUp from '../Authentication/SignUp';
-import Login from '../Authentication/Login';
+import AuthModal from '../Authentication/AuthModal';
 import useModal from '../common/useModal';
 
 function TopNavbar({ viewMode, setViewMode }) {
@@ -31,8 +30,7 @@ function TopNavbar({ viewMode, setViewMode }) {
 						</Nav.Link>
 					</Nav>
 					<Nav>
-						<Login show={show} handleClose={handleClose} />
-						<SignUp show={show} handleClose={handleClose} />
+						<AuthModal show={show} handleClose={handleClose} />
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

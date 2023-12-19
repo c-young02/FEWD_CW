@@ -45,7 +45,9 @@ exports.addTrip = function (req, res) {
 exports.processLogin = function (req, res, next) {
 	db.findOne({ username: req.body.username }, { _id: 1 }, function (err, user) {
 		if (!user) {
-			res.status(401).json({ success: false, msg: 'could not find user' });
+			res
+				.status(401)
+				.json({ success: false, msg: 'Incorrect username or password.' });
 		}
 		console.log(user);
 		// Function defined at bottom of app.js
@@ -66,27 +68,41 @@ exports.processLogin = function (req, res, next) {
 			} else {
 				res
 					.status(401)
-					.json({ success: false, msg: 'you entered the wrong password' });
+					.json({ success: false, msg: 'Incorrect username password.' });
 			}
 		}
 	});
 };
 
 exports.processNewUser = function (req, res, next) {
-	const saltHash = utils.genPassword(req.body.password);
+	// First, check if a user with the given username already exists
+	db.findOne({ username: req.body.username }, function (err, user) {
+		if (user) {
+			// If a user with the given username already exists, respond with an error message
+			res
+				.status(400)
+				.json({
+					success: false,
+					msg: 'This username is already taken. Please try again with a different username.',
+				});
+		} else {
+			// If no such user exists, proceed with creating the new user
+			const saltHash = utils.genPassword(req.body.password);
 
-	const salt = saltHash.salt;
-	const hash = saltHash.hash;
+			const salt = saltHash.salt;
+			const hash = saltHash.hash;
 
-	const newUser = {
-		username: req.body.username,
-		hash: hash,
-		salt: salt,
-	};
+			const newUser = {
+				username: req.body.username,
+				hash: hash,
+				salt: salt,
+			};
 
-	console.log(newUser);
+			console.log(newUser);
 
-	db.insert(newUser, function (err, user) {
-		res.json({ success: true, user: user });
+			db.insert(newUser, function (err, user) {
+				res.json({ success: true, user: user });
+			});
+		}
 	});
 };
