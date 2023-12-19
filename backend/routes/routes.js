@@ -10,6 +10,13 @@ router.get(
 	passport.authenticate('jwt', { session: false }),
 	controller.listTrips
 );
+router.get(
+	'/authenticate',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		res.json({ message: 'Authenticated' });
+	}
+);
 
 router.post('/login', controller.processLogin);
 router.post('/register', controller.processNewUser);

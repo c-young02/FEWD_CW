@@ -3,7 +3,6 @@ const nedb = require('gray-nedb');
 
 class Hostel {
 	constructor(hostelFilePath) {
-		console.log(hostelFilePath);
 		if (hostelFilePath) {
 			this.hostel = new nedb(hostelFilePath);
 			hostelFilePath;
@@ -412,7 +411,6 @@ class Hostel {
 					reject(err);
 				} else {
 					resolve(entries);
-					console.log('function all() returns: ', entries);
 				}
 			});
 		});

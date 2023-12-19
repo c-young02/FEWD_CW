@@ -1,17 +1,20 @@
 export const handleSuccessfulLogin = (response, username) => {
+	if (!response || !response.token) {
+		return { error: 'Invalid response or token' };
+	}
+
 	try {
-		localStorage.setItem('token', response.token); // Save the token in local storage
-		localStorage.setItem('username', username); // Save the username in local storage
-		return true;
+		localStorage.setItem('token', response.token);
+		localStorage.setItem('username', username);
+		console.log(response.token);
+		return { success: true };
 	} catch (error) {
-		console.error('Failed to save token or username in local storage:', error);
-		return false;
+		return { error: 'Failed to save token or username in local storage' };
 	}
 };
 
 export const handleLogout = (setLoggedInUser, handleClose) => {
-	localStorage.removeItem('username');
-	localStorage.removeItem('token');
+	localStorage.clear();
 	setLoggedInUser(null);
 	handleClose();
 };
