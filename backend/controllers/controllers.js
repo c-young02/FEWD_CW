@@ -42,7 +42,7 @@ exports.addTrip = function (req, res) {
 	trip
 		.addEntry(req.body)
 		.then(() => {
-			res.redirect('/');
+			res.status(200).json({ message: 'Trip added successfully.' });
 		})
 		.catch((err) => {
 			console.log('promise rejected', err);

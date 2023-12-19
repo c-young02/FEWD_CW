@@ -5,11 +5,7 @@ const passport = require('passport');
 
 router.get('/hostels', controller.listHostel);
 router.post('/addTrip', controller.addTrip);
-router.get(
-	'/trips',
-	passport.authenticate('jwt', { session: false }),
-	controller.listTrips
-);
+router.get('/trips', controller.listTrips);
 router.get(
 	'/authenticate',
 	passport.authenticate('jwt', { session: false }),
