@@ -24,13 +24,14 @@ exports.listHostel = function (req, res) {
 };
 
 exports.listTrips = function (req, res) {
+	const username = req.query.username;
 	trip
-		.getAllEntries()
+		.getAllEntries({ username: username })
 		.then((list) => {
 			res.json(list);
 		})
 		.catch((err) => {
-			console.log('promise rejected', err);
+			console.error('Promise rejected', err);
 			res
 				.status(500)
 				.json({ error: 'An error occurred while fetching trips.' });

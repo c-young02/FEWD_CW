@@ -6,24 +6,19 @@ const ViewTrips = () => {
 	useEffect(() => {
 		const fetchTrips = async () => {
 			const username = localStorage.getItem('username');
-			console.log('Username:', username); // Log the username
 
 			try {
-				const response = await fetch('http://localhost:3001/trips', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ username }),
-				});
-				console.log('Response:', response); // Log the response
+				const response = await fetch(
+					`http://localhost:3001/trips?username=${username}`
+				);
 
 				if (response.ok) {
 					const data = await response.json();
-					console.log('Data:', data); // Log the data
-					setTrips(data);
-				} else {
-					console.error('Failed to fetch trips.');
+
+					const userTrips =
+						data.find((user) => user.username === username)?.trips || [];
+
+					setTrips(userTrips);
 				}
 			} catch (error) {
 				console.error('Error:', error);
@@ -32,8 +27,6 @@ const ViewTrips = () => {
 
 		fetchTrips();
 	}, []);
-
-	console.log('Trips:', trips); // Log the trips
 
 	return (
 		<div>

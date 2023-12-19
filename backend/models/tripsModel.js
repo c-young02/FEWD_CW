@@ -12,14 +12,13 @@ class Trips {
 		}
 	}
 
-	getAllEntries() {
+	getAllEntries(query) {
 		return new Promise((resolve, reject) => {
-			this.trip.find({}, function (err, entries) {
+			this.trip.find(query, (err, docs) => {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(entries);
-					console.log('function all() returns: ', entries);
+					resolve(docs);
 				}
 			});
 		});
