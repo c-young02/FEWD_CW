@@ -42,6 +42,24 @@ class Trips {
 		});
 	}
 
+	displayEntry(username, id) {
+		return new Promise((resolve, reject) => {
+			console.log(`Fetching user with username: ${username}`);
+			this.trip.findOne({ username: username }, function (err, user) {
+				if (err) {
+					console.error('Error fetching user:', err);
+					reject(err);
+				} else {
+					console.log('User fetched successfully:', user);
+					// Filter the trips array to get the trip with the matching id
+					const trip = user.trips.find((trip) => trip.id === id);
+					console.log(`Trip with id ${id} fetched:`, trip);
+					resolve(trip);
+				}
+			});
+		});
+	}
+
 	async addEntry({ username, title, stages }) {
 		try {
 			const tripId = uuidv4(); // Generate a new UUID

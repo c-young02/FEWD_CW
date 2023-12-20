@@ -92,6 +92,44 @@ exports.deleteTrip = function (req, res) {
 		});
 };
 
+exports.showTrip = function (req, res) {
+	const id = req.query.id;
+	const username = req.query.username;
+	trip
+		.displayEntry(username, id)
+		.then((tripDetails) => {
+			console.log('Trip displayed successfully. Details:', tripDetails);
+			res
+				.status(200)
+				.json({ message: 'Trip showed successfully.', trip: tripDetails });
+		})
+		.catch((err) => {
+			console.error('Failed to show trip:', err);
+			res
+				.status(500)
+				.json({ error: 'An error occurred while showing the trip.' });
+		});
+};
+
+exports.editTrip = function (req, res) {
+	const id = req.query.id;
+	const username = req.query.username;
+	trip
+		.displayEntry(username, id)
+		.then((tripDetails) => {
+			console.log('Trip displayed successfully. Details:', tripDetails);
+			res
+				.status(200)
+				.json({ message: 'Trip showed successfully.', trip: tripDetails });
+		})
+		.catch((err) => {
+			console.error('Failed to show trip:', err);
+			res
+				.status(500)
+				.json({ error: 'An error occurred while showing the trip.' });
+		});
+};
+
 exports.processLogin = function (req, res, next) {
 	db.findOne({ username: req.body.username }, { _id: 1 }, function (err, user) {
 		if (err) {

@@ -7,14 +7,17 @@ export default function Stages({
 	handleDeleteStage,
 	hostels,
 }) {
-	return stages.map((stage, index) => (
-		<StageForm
-			key={index}
-			stage={stage}
-			index={index}
-			handleStageChange={handleStageChange}
-			handleDeleteStage={handleDeleteStage}
-			hostels={hostels}
-		/>
-	));
+	return stages.map((stage, index) => {
+		console.log(`Stage ${index}:`, stage);
+		return (
+			<StageForm
+				key={index}
+				stage={stage}
+				index={index}
+				handleStageChange={handleStageChange}
+				handleDeleteStage={handleDeleteStage}
+				hostels={hostels}
+			/>
+		);
+	});
 }

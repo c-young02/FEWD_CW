@@ -23,7 +23,10 @@ const Trip = ({ trip, onEdit, onDelete }) => (
 				</div>
 			</div>
 			<div>
-				<DropdownMenu onEdit={onEdit} onDelete={() => onDelete(trip.id)} />
+				<DropdownMenu
+					onEdit={() => onEdit(trip.id)}
+					onDelete={() => onDelete(trip.id)}
+				/>
 			</div>
 		</Accordion.Body>
 	</Accordion>

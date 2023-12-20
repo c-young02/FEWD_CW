@@ -6,17 +6,20 @@ import useStagesReducer from './useStagesReducer';
 import useFormValidation from './useFormValidation';
 import useFormSubmission from './useFormSubmission';
 
-export default function CreateTrip() {
+export default function CreateTrip({ initialData }) {
 	const { hostels } = useFetchData();
 	const { stages, handleAddStage, handleDeleteStage, handleStageChange } =
-		useStagesReducer();
+		useStagesReducer(initialData ? initialData.stages : []);
+	console.log('Stages are:', stages);
 	const { title, setTitle, message, setMessage, validateForm } =
-		useFormValidation('', stages);
+		useFormValidation(initialData ? initialData.title : '', stages);
+	console.log('Title is:', title);
 	const { handleSubmit } = useFormSubmission(
 		title,
 		stages,
 		validateForm,
-		setMessage
+		setMessage,
+		initialData
 	);
 
 	useEffect(() => {
@@ -48,8 +51,8 @@ export default function CreateTrip() {
 			>
 				Add Stage
 			</button>
-			<button type="submit" className="btn btn-success">
-				Create Trip
+			<button type="submit" className="btn btn-primary">
+				{initialData ? 'Update' : 'Create'} Trip
 			</button>
 		</form>
 	);

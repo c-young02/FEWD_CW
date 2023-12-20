@@ -6,15 +6,11 @@ const passport = require('passport');
 router.get('/hostels', controller.listHostel);
 
 router.get('/gethostel', controller.getHostel);
+
 router.post(
 	'/addTrip',
 	passport.authenticate('jwt', { session: false }),
 	controller.addTrip
-);
-router.delete(
-	'/deletetrip',
-	passport.authenticate('jwt', { session: false }),
-	controller.deleteTrip
 );
 
 router.get(
@@ -22,6 +18,25 @@ router.get(
 	passport.authenticate('jwt', { session: false }),
 	controller.listTrips
 );
+
+router.get(
+	'/trip',
+	passport.authenticate('jwt', { session: false }),
+	controller.showTrip
+);
+
+router.post(
+	'/editTrip',
+	passport.authenticate('jwt', { session: false }),
+	controller.editTrip
+);
+
+router.delete(
+	'/deleteTrip',
+	passport.authenticate('jwt', { session: false }),
+	controller.deleteTrip
+);
+
 router.get(
 	'/authenticate',
 	passport.authenticate('jwt', { session: false }),

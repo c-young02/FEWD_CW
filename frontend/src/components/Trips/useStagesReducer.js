@@ -17,8 +17,11 @@ function stagesReducer(state, action) {
 	}
 }
 
-export default function useStagesReducer() {
-	const [stages, dispatchStages] = useReducer(stagesReducer, initialState);
+export default function useStagesReducer(initialStages) {
+	const [stages, dispatchStages] = useReducer(
+		stagesReducer,
+		initialStages && initialStages.length > 0 ? initialStages : initialState
+	);
 
 	const handleAddStage = () => {
 		dispatchStages({ type: 'ADD_STAGE' });

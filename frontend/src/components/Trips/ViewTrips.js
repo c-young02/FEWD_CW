@@ -5,12 +5,15 @@ import useFetchData from '../common/useFetchData';
 import TripRoute from './TripRoute';
 import { Modal } from 'react-bootstrap';
 import { deleteTrip } from './deleteTrip';
+import { fetchTrip } from './fetchTrip';
+import CreateTrip from './CreateTrip';
 
 const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const { trips, error, refetch } = useFetchData();
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
+	const [tripToEdit, setTripToEdit] = useState(null);
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
@@ -26,27 +29,45 @@ const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 
 	const handleDelete = async (id) => {
 		try {
-			await deleteTrip(id); // use the deleteTrip function
+			await deleteTrip(id);
 			setModalMessage('Trip deleted successfully');
 			setModalIsOpen(true);
-			refetch(); // Refresh the trips list after a trip is deleted
+			refetch();
 		} catch (error) {
 			setModalMessage(`Failed to delete trip: ${error.message}`);
 			setModalIsOpen(true);
 		}
 	};
 
+	const handleEdit = async (id) => {
+		console.log('Editing trip', id);
+		try {
+			const tripDetails = await fetchTrip(id);
+			console.log('Retrieved trip', tripDetails);
+			// Set the fetched trip as the trip to edit
+			setTripToEdit(tripDetails);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const renderTrip = ({ id, ...trip }) => (
+		<Trip
+			key={id}
+			trip={trip}
+			onEdit={() => handleEdit(id)}
+			onDelete={() => handleDelete(id)}
+		/>
+	);
+
 	return (
 		<div className="mt-3">
 			<SearchInput value={searchTerm} onChange={setSearchTerm} />
-			{filteredTrips.map((trip) => (
-				<Trip
-					key={trip.id}
-					trip={trip}
-					onEdit={() => console.log(`Edit trip ${trip.id}`)}
-					onDelete={() => handleDelete(trip.id)}
-				/>
-			))}
+			{tripToEdit ? (
+				<CreateTrip initialData={tripToEdit} />
+			) : (
+				filteredTrips.map(renderTrip)
+			)}
 			<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
 			{selectedTrip && selectedTrip.stages.length <= 1 && (
 				<p>Selected trip is too short to plot route.</p>
