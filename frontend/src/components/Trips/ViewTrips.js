@@ -1,39 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import SearchInput from '../common/SearchInput';
+import Trip from './Trip';
+import useFetchData from '../common/useFetchData';
+import TripRoute from './TripRoute';
 
 const ViewTrips = () => {
-	const [trips, setTrips] = useState([]);
+	const [searchTerm, setSearchTerm] = useState('');
+	const { trips, error } = useFetchData();
+	const [selectedTrip, setSelectedTrip] = useState(null);
 
-	useEffect(() => {
-		const fetchTrips = async () => {
-			const username = localStorage.getItem('username');
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
 
-			try {
-				const response = await fetch(
-					`http://localhost:3001/trips?username=${username}`
-				);
-
-				if (response.ok) {
-					const data = await response.json();
-
-					const userTrips =
-						data.find((user) => user.username === username)?.trips || [];
-
-					setTrips(userTrips);
-				}
-			} catch (error) {
-				console.error('Error:', error);
-			}
-		};
-
-		fetchTrips();
-	}, []);
+	const filteredTrips = trips.filter(
+		(trip) =>
+			trip.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			trip.stages.some((stage) =>
+				stage.hostel.toLowerCase().includes(searchTerm.toLowerCase())
+			)
+	);
 
 	return (
 		<div>
 			<h1>Your Trips</h1>
-			{trips.map((trip, index) => (
-				<h2 key={index}>{trip.title}</h2>
+			<SearchInput value={searchTerm} onChange={setSearchTerm} />
+
+			{filteredTrips.map((trip, index) => (
+				<Trip
+					key={index}
+					trip={trip}
+					onEdit={() => console.log(`Edit trip ${trip.id}`)}
+					onDelete={() => console.log(`Delete trip ${trip.id}`)}
+				/>
 			))}
+
+			<TripRoute
+				trips={trips}
+				selectedTrip={selectedTrip}
+				setSelectedTrip={setSelectedTrip}
+			/>
 		</div>
 	);
 };

@@ -23,6 +23,31 @@ exports.listHostel = function (req, res) {
 		});
 };
 
+exports.getHostel = async (req, res) => {
+	const { name } = req.query;
+
+	console.log(`Received request to get hostel with name: ${name}`); // Log the request query
+
+	// If a name query parameter is provided, find the hostel by name
+	try {
+		// Use the find method of Datastore to find a hostel by its name
+		hostel.hostel.find({ name: name }, function (err, docs) {
+			if (err) {
+				console.log(`Error occurred: ${err}`); // Log the error message
+				res.status(500).send(err);
+			} else if (docs.length > 0) {
+				console.log(`Found hostel: ${JSON.stringify(docs[0])}`); // Log the result of the find operation
+				res.json(docs[0]);
+			} else {
+				res.status(404).send('Hostel not found');
+			}
+		});
+	} catch (err) {
+		console.log(`Error occurred: ${err}`); // Log the error message
+		res.status(500).send(err);
+	}
+};
+
 exports.listTrips = function (req, res) {
 	const username = req.query.username;
 	trip

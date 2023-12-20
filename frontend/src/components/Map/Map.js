@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, useMap, Polyline } from 'react-leaflet';
 import HostelMarker from './HostelMarker';
 
 const ChangeView = ({ center }) => {
@@ -8,12 +8,18 @@ const ChangeView = ({ center }) => {
 	return null;
 };
 
-const Map = ({ hostels, center }) => {
+const Map = ({ hostels, center, trips }) => {
 	const initializeMap = (hostels) => {
 		return hostels.map((hostel) => (
 			<HostelMarker key={hostel.id} hostel={hostel} />
 		));
 	};
+
+	// Check if trips is defined and not empty
+	const coordinates =
+		trips && trips.length > 0
+			? trips.map((trip) => [trip.hostel.lat, trip.hostel.long])
+			: [];
 
 	return (
 		<MapContainer
@@ -28,6 +34,10 @@ const Map = ({ hostels, center }) => {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
 			{initializeMap(hostels)}
+			{/* Add a polyline for the trip route if coordinates is not empty */}
+			{coordinates.length > 0 && (
+				<Polyline positions={coordinates} color="blue" />
+			)}
 		</MapContainer>
 	);
 };

@@ -415,5 +415,9 @@ class Hostel {
 			});
 		});
 	}
+
+	findHostel(query) {
+		return this.hostel.findHostel(query);
+	}
 }
 module.exports = Hostel;
