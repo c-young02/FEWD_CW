@@ -8,6 +8,7 @@ import Loading from '../common/Loading';
 const Home = ({ viewMode }) => {
 	const { status, hostels } = useFetchData();
 	const [center, setCenter] = useState([57.8, -4.1]);
+	const [selectedTrip, setSelectedTrip] = useState(null);
 
 	const handleHostelClick = (hostel) => {
 		setCenter([hostel.location.lat, hostel.location.long]);
@@ -21,11 +22,18 @@ const Home = ({ viewMode }) => {
 						{viewMode === 'hostels' ? (
 							<Search hostels={hostels} onHostelClick={handleHostelClick} />
 						) : (
-							<Trips />
+							<Trips
+								setSelectedTrip={setSelectedTrip}
+								selectedTrip={selectedTrip}
+							/>
 						)}
 					</div>
 					<div className="col my-5">
-						<Map hostels={hostels} center={center} />
+						<Map
+							hostels={hostels}
+							center={center}
+							selectedTrip={selectedTrip}
+						/>
 					</div>
 				</div>
 			</div>

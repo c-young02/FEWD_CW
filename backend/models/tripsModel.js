@@ -1,5 +1,6 @@
 //const nedb = require("nedb");
 const nedb = require('gray-nedb');
+const { v4: uuidv4 } = require('uuid');
 
 class Trips {
 	constructor(tripFilePath) {
@@ -24,12 +25,14 @@ class Trips {
 		});
 	}
 
-	async addEntry({ username, title, stages }, id) {
+	async addEntry({ username, title, stages }) {
 		try {
+			const tripId = uuidv4(); // Generate a new UUID
+
 			const affectedDocuments = await new Promise((resolve, reject) => {
 				this.trip.update(
 					{ username },
-					{ $push: { trips: { title, stages } }, $set: { id } },
+					{ $push: { trips: { id: tripId, title, stages } } },
 					{ upsert: true },
 					(err, affectedDocuments) => {
 						if (err) {

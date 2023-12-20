@@ -22,7 +22,6 @@ const useFetchData = () => {
 				const {
 					location: { lat, long },
 				} = hostel;
-				console.log(`Latitude: ${lat}, Longitude: ${long}`); // Log the latitude and longitude
 				return { lat, long };
 			} else {
 				throw new Error(`No hostel found with name ${hostelName}`);

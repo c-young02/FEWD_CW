@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { authenticate } from '../common/Authenticate';
 import CreateTrip from './CreateTrip';
-import ViewTrips from './ViewTrips'; // Import the ViewTrips component
+import ViewTrips from './ViewTrips';
 
-export default function Trips() {
+export default function Trips({ setSelectedTrip, selectedTrip }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [view, setView] = useState('create'); // Add a piece of state to keep track of the current view
+	const [view, setView] = useState('create');
 
 	useEffect(() => {
 		authenticate(setIsLoggedIn);
@@ -16,13 +16,20 @@ export default function Trips() {
 			<div>
 				<div className="text-center">
 					<button
-						onClick={() => setView(view === 'create' ? 'view' : 'create')}
+						onClick={() => setView(view === 'view' ? 'create' : 'view')}
 						className="btn btn-primary"
 					>
-						{view === 'create' ? 'View Trips' : 'Create Trip'}
+						{view === 'view' ? 'Change to Create Trip' : 'Change to View Trips'}
 					</button>
 				</div>
-				{view === 'create' ? <CreateTrip /> : <ViewTrips />}
+				{view === 'view' ? (
+					<ViewTrips
+						setSelectedTrip={setSelectedTrip}
+						selectedTrip={selectedTrip}
+					/>
+				) : (
+					<CreateTrip setView={setView} />
+				)}
 			</div>
 		);
 	} else {

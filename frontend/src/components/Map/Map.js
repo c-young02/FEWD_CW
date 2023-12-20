@@ -8,18 +8,25 @@ const ChangeView = ({ center }) => {
 	return null;
 };
 
-const Map = ({ hostels, center, trips }) => {
+const Map = ({ hostels, center, selectedTrip }) => {
 	const initializeMap = (hostels) => {
 		return hostels.map((hostel) => (
 			<HostelMarker key={hostel.id} hostel={hostel} />
 		));
 	};
 
+	//const coordinates = [[57.8, -4.1], [57.9, -4.2]];
+
 	// Check if trips is defined and not empty
 	const coordinates =
-		trips && trips.length > 0
-			? trips.map((trip) => [trip.hostel.lat, trip.hostel.long])
+		selectedTrip && selectedTrip.stages && selectedTrip.stages.length > 0
+			? selectedTrip.stages.map((stage) => [
+					stage.location.lat,
+					stage.location.long,
+			  ])
 			: [];
+
+	console.log('Coordinates:', coordinates); // Log coordinates to console
 
 	return (
 		<MapContainer
