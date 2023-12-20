@@ -2,7 +2,7 @@ export function authenticate(setIsLoggedIn) {
 	const token = localStorage.getItem('token');
 	fetch('http://localhost:3001/authenticate', {
 		headers: {
-			Authorization: token, // Use the token
+			Authorization: token,
 		},
 	})
 		.then((response) => {

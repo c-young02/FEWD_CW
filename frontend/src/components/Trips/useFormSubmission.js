@@ -5,6 +5,8 @@ export default function useFormSubmission(
 	setMessage
 ) {
 	const handleSubmit = async (event) => {
+		const token = localStorage.getItem('token');
+
 		event.preventDefault();
 
 		// Validate the form data
@@ -22,6 +24,7 @@ export default function useFormSubmission(
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
+					Authorization: token,
 				},
 				body: JSON.stringify({
 					title: initialTitle,

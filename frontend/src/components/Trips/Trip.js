@@ -11,8 +11,6 @@ const Trip = ({ trip, onEdit, onDelete }) => (
 					{trip.stages.map((stage, index) => (
 						<div key={stage.id}>
 							Hostel: {stage.hostel}
-							Location Delete thisss: {stage.location.lat},{' '}
-							{stage.location.long}
 							<br />
 							Arrival Date:{' '}
 							{new Date(stage.arrivalDate).toLocaleDateString('en-GB')}

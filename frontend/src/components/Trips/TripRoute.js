@@ -4,8 +4,6 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 const TripRoute = ({ trips, setSelectedTrip }) => {
 	const [selectedTripTitle, setSelectedTripTitle] = useState('Plot a trip');
 
-	console.log('Trips:', trips); // Log trips to console
-
 	return (
 		<DropdownButton
 			id="dropdown-basic-button"

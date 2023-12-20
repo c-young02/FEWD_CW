@@ -25,7 +25,7 @@ export default function CreateTrip() {
 	}, []);
 
 	return (
-		<form onSubmit={handleSubmit} className="mt-5">
+		<form onSubmit={handleSubmit} className="mt-1">
 			<p
 				className={
 					message.includes('successfully') ? 'text-success' : 'text-danger'

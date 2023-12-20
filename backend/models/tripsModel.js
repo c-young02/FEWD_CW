@@ -25,6 +25,23 @@ class Trips {
 		});
 	}
 
+	deleteEntry(username, id) {
+		return new Promise((resolve, reject) => {
+			this.trip.update(
+				{ username: username },
+				{ $pull: { trips: { id: id } } },
+				{},
+				function (err, numRemoved) {
+					if (err) {
+						reject(err);
+					} else {
+						resolve(numRemoved);
+					}
+				}
+			);
+		});
+	}
+
 	async addEntry({ username, title, stages }) {
 		try {
 			const tripId = uuidv4(); // Generate a new UUID

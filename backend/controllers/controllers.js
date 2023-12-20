@@ -75,6 +75,23 @@ exports.addTrip = function (req, res) {
 		});
 };
 
+exports.deleteTrip = function (req, res) {
+	const id = req.query.id;
+	const username = req.query.username;
+	trip
+		.deleteEntry(username, id)
+		.then(() => {
+			console.log('Trip deleted successfully.');
+			res.status(200).json({ message: 'Trip deleted successfully.' });
+		})
+		.catch((err) => {
+			console.error('Failed to delete trip:', err);
+			res
+				.status(500)
+				.json({ error: 'An error occurred while deleting the trip.' });
+		});
+};
+
 exports.processLogin = function (req, res, next) {
 	db.findOne({ username: req.body.username }, { _id: 1 }, function (err, user) {
 		if (err) {
