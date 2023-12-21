@@ -429,6 +429,15 @@ class Hostel {
 			// Add the new review
 			const affectedDocuments = await new Promise((resolve, reject) => {
 				console.log('Updating hostel with new review');
+				const date = new Date();
+				const formattedDate = `${String(date.getDate()).padStart(
+					2,
+					'0'
+				)}/${String(date.getMonth() + 1).padStart(
+					2,
+					'0'
+				)}/${date.getFullYear()}`;
+
 				this.hostel.update(
 					{ id: id },
 					{
@@ -438,7 +447,7 @@ class Hostel {
 								reviewer,
 								review,
 								rating,
-								date: new Date(),
+								date: formattedDate,
 							},
 						},
 					},
