@@ -1,5 +1,5 @@
 export default function useFormSubmission(
-	hostel,
+	hostelId,
 	reviewText,
 	rating,
 	setMessage
@@ -29,7 +29,7 @@ export default function useFormSubmission(
 					Authorization: token,
 				},
 				body: JSON.stringify({
-					hostel,
+					hostelId,
 					username,
 					reviewText,
 					rating,

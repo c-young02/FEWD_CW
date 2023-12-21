@@ -4,37 +4,37 @@ import SelectStar from '../Stars/selectStar';
 import useFormSubmission from './submitReview';
 import validateReview from './validateReview';
 
-const CreateReview = ({ hostelName }) => {
+const CreateReview = ({ hostelId }) => {
 	const [reviewText, setReviewText] = useState(''); // Initialize to empty string
 	const [rating, setRating] = useState(0); // Initialize to 0
 	const [message, setMessage] = useState('');
 
 	const { handleSubmitReview } = useFormSubmission(
-		hostelName,
+		hostelId,
 		reviewText,
 		rating,
 		setMessage
 	);
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
+	const handleSubmitWithLogging = (event) => {
 		const validationError = validateReview(reviewText, rating);
 		if (validationError) {
+			event.preventDefault();
 			setMessage(validationError);
 			return;
 		}
 
-		handleSubmitReview();
+		event.preventDefault();
+		handleSubmitReview(event);
 	};
 
 	return (
 		<div>
 			<hr />
-			<h1>{hostelName}</h1>
+			<h1>{hostelId}</h1>
 			<h4>Create Review</h4>
 			{message && <Alert variant="danger">{message}</Alert>}
-			<Form onSubmit={handleSubmit}>
+			<Form onSubmit={handleSubmitWithLogging}>
 				<Form.Group className="mb-3">
 					<Form.Label>Review</Form.Label>
 					<Form.Control

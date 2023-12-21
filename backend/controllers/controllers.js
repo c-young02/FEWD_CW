@@ -45,6 +45,33 @@ exports.getHostel = async (req, res) => {
 	}
 };
 
+exports.createReview = function (req, res) {
+	console.log('updateTrip called');
+
+	const id = req.body.hostelId;
+	const username = req.body.username;
+	const rating = req.body.rating;
+	const review = req.body.reviewText;
+
+	console.log('id:', id);
+	console.log('username:', username);
+	console.log('rating:', rating);
+	console.log('review:', review);
+
+	hostel
+		.createReview(id, username, rating, review)
+		.then(() => {
+			console.log('Review created successfully.');
+			res.status(200).json({ message: 'Review created successfully.' });
+		})
+		.catch((err) => {
+			console.error('Failed to create review:', err);
+			res
+				.status(500)
+				.json({ error: 'An error occurred while creating the review.' });
+		});
+};
+
 exports.listTrips = function (req, res) {
 	const username = req.query.username;
 	trip

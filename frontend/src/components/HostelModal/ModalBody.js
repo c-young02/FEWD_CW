@@ -61,7 +61,7 @@ const ModalBody = ({
 					</OverlayTrigger>
 				)}
 			</div>
-			{showCreateReview && <CreateReview hostelName={hostel.name} />}
+			{showCreateReview && <CreateReview hostelId={hostel.id} />}
 
 			{showReviews && (
 				<ReviewSection

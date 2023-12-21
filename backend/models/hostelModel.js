@@ -1,5 +1,6 @@
 //const nedb = require("nedb");
 const nedb = require('gray-nedb');
+const { v4: uuidv4 } = require('uuid');
 
 class Hostel {
 	constructor(hostelFilePath) {
@@ -418,6 +419,56 @@ class Hostel {
 
 	findHostel(query) {
 		return this.hostel.findHostel(query);
+	}
+
+	async createReview(id, reviewer, rating, review) {
+		console.log('createReview called with:', { id, reviewer, rating, review });
+		const tripId = uuidv4(); // Generate a new UUID
+
+		try {
+			// Add the new review
+			const affectedDocuments = await new Promise((resolve, reject) => {
+				console.log('Updating hostel with new review');
+				this.hostel.update(
+					{ id: id },
+					{
+						$push: {
+							reviews: {
+								id: tripId,
+								reviewer,
+								review,
+								rating,
+								date: new Date(),
+							},
+						},
+					},
+					{},
+					(err, affectedDocuments) => {
+						if (err) {
+							console.error('Error during review creation:', err);
+							reject(err);
+						} else {
+							console.log('Review created successfully');
+							resolve(affectedDocuments);
+						}
+					}
+				);
+			});
+
+			// Compact the data file after the update operation
+			try {
+				console.log('Compacting data file');
+				this.hostel.persistence.compactDatafile();
+			} catch (err) {
+				console.error('Failed to compact data file:', err);
+			}
+
+			console.log('Number of affected documents:', affectedDocuments);
+			return affectedDocuments;
+		} catch (err) {
+			console.error('Failed to create review:', err);
+			throw err;
+		}
 	}
 }
 module.exports = Hostel;

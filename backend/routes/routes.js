@@ -37,6 +37,12 @@ router.delete(
 	controller.deleteTrip
 );
 
+router.put(
+	'/createReview',
+	passport.authenticate('jwt', { session: false }),
+	controller.createReview
+);
+
 router.get(
 	'/authenticate',
 	passport.authenticate('jwt', { session: false }),
