@@ -8,7 +8,6 @@ export default function Stages({
 	hostels,
 }) {
 	return stages.map((stage, index) => {
-		console.log(`Stage ${index}:`, stage);
 		return (
 			<StageForm
 				key={index}

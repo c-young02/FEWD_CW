@@ -43,7 +43,6 @@ const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 		console.log('Editing trip', id);
 		try {
 			const tripDetails = await fetchTrip(id);
-			console.log('Retrieved trip', tripDetails);
 			// Set the fetched trip as the trip to edit
 			setTripToEdit(tripDetails);
 		} catch (error) {

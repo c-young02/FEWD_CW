@@ -25,10 +25,10 @@ router.get(
 	controller.showTrip
 );
 
-router.post(
-	'/editTrip',
+router.put(
+	'/updateTrip',
 	passport.authenticate('jwt', { session: false }),
-	controller.editTrip
+	controller.updateTrip
 );
 
 router.delete(

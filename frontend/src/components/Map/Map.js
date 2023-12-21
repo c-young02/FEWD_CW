@@ -26,8 +26,6 @@ const Map = ({ hostels, center, selectedTrip }) => {
 			  ])
 			: [];
 
-	console.log('Coordinates:', coordinates); // Log coordinates to console
-
 	return (
 		<MapContainer
 			center={[57.8, -4.1]}

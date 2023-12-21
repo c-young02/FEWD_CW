@@ -61,7 +61,6 @@ exports.listTrips = function (req, res) {
 };
 
 exports.addTrip = function (req, res) {
-	console.log('req body to add to database : ', req.body);
 	trip
 		.addEntry(req.body)
 		.then(() => {
@@ -98,7 +97,6 @@ exports.showTrip = function (req, res) {
 	trip
 		.displayEntry(username, id)
 		.then((tripDetails) => {
-			console.log('Trip displayed successfully. Details:', tripDetails);
 			res
 				.status(200)
 				.json({ message: 'Trip showed successfully.', trip: tripDetails });
@@ -111,22 +109,28 @@ exports.showTrip = function (req, res) {
 		});
 };
 
-exports.editTrip = function (req, res) {
-	const id = req.query.id;
-	const username = req.query.username;
+exports.updateTrip = function (req, res) {
+	console.log('updateTrip called');
+
+	const id = req.body.id;
+	const username = req.body.username;
+	const newTripData = req.body;
+
+	console.log('id:', id);
+	console.log('username:', username);
+	console.log('newTripData:', newTripData);
+
 	trip
-		.displayEntry(username, id)
-		.then((tripDetails) => {
-			console.log('Trip displayed successfully. Details:', tripDetails);
-			res
-				.status(200)
-				.json({ message: 'Trip showed successfully.', trip: tripDetails });
+		.updateEntry(username, id, newTripData)
+		.then(() => {
+			console.log('Trip updated successfully.');
+			res.status(200).json({ message: 'Trip updated successfully.' });
 		})
 		.catch((err) => {
-			console.error('Failed to show trip:', err);
+			console.error('Failed to update trip:', err);
 			res
 				.status(500)
-				.json({ error: 'An error occurred while showing the trip.' });
+				.json({ error: 'An error occurred while updating the trip.' });
 		});
 };
 

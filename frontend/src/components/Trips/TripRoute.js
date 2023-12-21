@@ -13,7 +13,6 @@ const TripRoute = ({ trips, setSelectedTrip }) => {
 		>
 			<Dropdown.Item
 				onClick={() => {
-					console.log('None selected');
 					setSelectedTrip(null);
 					setSelectedTripTitle('Plot a trip');
 				}}
@@ -24,7 +23,6 @@ const TripRoute = ({ trips, setSelectedTrip }) => {
 				<Dropdown.Item
 					key={trip.id}
 					onClick={() => {
-						console.log('Selected trip:', trip);
 						setSelectedTrip(trip);
 						setSelectedTripTitle(trip.title);
 					}}

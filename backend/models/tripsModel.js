@@ -92,6 +92,61 @@ class Trips {
 			throw err;
 		}
 	}
+
+	async updateEntry(username, id, updatedTrip) {
+		console.log('updateEntry called');
+
+		try {
+			// Remove the old trip
+			await new Promise((resolve, reject) => {
+				this.trip.update(
+					{ username },
+					{ $pull: { trips: { id } } },
+					{},
+					(err, numRemoved) => {
+						if (err) {
+							console.error('Error during trip removal:', err);
+							reject(err);
+						} else {
+							console.log('Old trip removed');
+							resolve(numRemoved);
+						}
+					}
+				);
+			});
+
+			// Add the updated trip
+			const affectedDocuments = await new Promise((resolve, reject) => {
+				this.trip.update(
+					{ username },
+					{ $push: { trips: updatedTrip } },
+					{},
+					(err, affectedDocuments) => {
+						if (err) {
+							console.error('Error during trip update:', err);
+							reject(err);
+						} else {
+							console.log('Trip updated successfully');
+							resolve(affectedDocuments);
+						}
+					}
+				);
+			});
+
+			// Compact the data file after the update operation
+			try {
+				console.log('Compacting data file');
+				this.trip.persistence.compactDatafile();
+			} catch (err) {
+				console.error('Failed to compact data file:', err);
+			}
+
+			return affectedDocuments;
+		} catch (err) {
+			console.error('Failed to update entry:', err);
+			throw err;
+		}
+	}
 }
 
 module.exports = Trips;

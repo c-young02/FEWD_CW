@@ -10,10 +10,8 @@ export default function CreateTrip({ initialData }) {
 	const { hostels } = useFetchData();
 	const { stages, handleAddStage, handleDeleteStage, handleStageChange } =
 		useStagesReducer(initialData ? initialData.stages : []);
-	console.log('Stages are:', stages);
 	const { title, setTitle, message, setMessage, validateForm } =
 		useFormValidation(initialData ? initialData.title : '', stages);
-	console.log('Title is:', title);
 	const { handleSubmit } = useFormSubmission(
 		title,
 		stages,
