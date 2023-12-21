@@ -1,7 +1,7 @@
 import React from 'react';
 import Hostel from './Hostel';
 
-const DisplayHostels = ({ hostels, onHostelClick }) => {
+const DisplayHostels = ({ hostels, onHostelClick, refetchHostels }) => {
 	if (hostels.length === 0) {
 		return <p>No hostels found.</p>;
 	}
@@ -21,6 +21,7 @@ const DisplayHostels = ({ hostels, onHostelClick }) => {
 							key={hostel.id}
 							item={hostel}
 							onHostelClick={onHostelClick}
+							refetchHostels={refetchHostels}
 						/>
 					))}
 				</tbody>

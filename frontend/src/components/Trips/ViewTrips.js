@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchInput from '../common/SearchInput';
 import Trip from './Trip';
-import useFetchData from '../common/useFetchData';
+import useFetchTrips from '../common/useFetchTrips';
 import TripRoute from './TripRoute';
 import { Modal } from 'react-bootstrap';
 import { deleteTrip } from './deleteTrip';
@@ -14,7 +14,7 @@ const ViewTrips = ({
 	setView,
 }) => {
 	const [searchTerm, setSearchTerm] = useState('');
-	const { trips, error, refetch } = useFetchData();
+	const { trips, error, refetch } = useFetchTrips();
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
 

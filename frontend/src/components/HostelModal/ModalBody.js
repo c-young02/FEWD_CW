@@ -15,6 +15,7 @@ const ModalBody = ({
 	filteredReviews,
 	activeKey,
 	setActiveKey,
+	refetchHostels,
 }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [showCreateReview, setShowCreateReview] = useState(false); // new state
@@ -61,7 +62,9 @@ const ModalBody = ({
 					</OverlayTrigger>
 				)}
 			</div>
-			{showCreateReview && <CreateReview hostelId={hostel.id} />}
+			{showCreateReview && (
+				<CreateReview hostelId={hostel.id} refetchHostels={refetchHostels} />
+			)}
 
 			{showReviews && (
 				<ReviewSection

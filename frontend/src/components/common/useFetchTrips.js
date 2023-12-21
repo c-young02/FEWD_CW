@@ -1,9 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 
-const useFetchData = () => {
-	const [status, setStatus] = useState('idle');
-	const [hostels, setHostels] = useState([]);
+const useFetchTrips = () => {
 	const [trips, setTrips] = useState([]);
+	const [status, setStatus] = useState('idle');
 	const [error, setError] = useState(null);
 
 	const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
@@ -49,6 +48,7 @@ const useFetchData = () => {
 				}
 
 				setTrips(userTrips);
+				setStatus('fetched');
 			}
 		} catch (error) {
 			console.error('Error:', error);
@@ -57,30 +57,11 @@ const useFetchData = () => {
 		}
 	}, [baseUrl, token]);
 
-	const fetchData = useCallback(() => {
-		setStatus('loading');
-		setError(null);
-
-		fetch(`${baseUrl}/hostels`)
-			.then((response) => response.json())
-			.then((incomingData) => {
-				setHostels(incomingData);
-				setStatus('fetched');
-			})
-			.catch((err) => {
-				console.error(err);
-				setStatus('error');
-				setError(err);
-			});
-
-		fetchTrips();
-	}, [baseUrl, fetchTrips]);
-
 	useEffect(() => {
-		fetchData();
-	}, [fetchData]);
+		fetchTrips();
+	}, [fetchTrips]);
 
-	return { status, hostels, trips, error, refetch: fetchTrips };
+	return { status, trips, error, refetch: fetchTrips };
 };
 
-export default useFetchData;
+export default useFetchTrips;

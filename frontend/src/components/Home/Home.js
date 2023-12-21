@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import useFetchData from '../common/useFetchData';
+import useFetchHostels from '../common/useFetchHostels';
 import Search from '../Hostel/Search';
 import Trips from '../Trips/Trips';
 import Map from '../Map/Map';
 import Loading from '../common/Loading';
 
-const Home = ({ viewMode }) => {
-	const { status, hostels } = useFetchData();
+const Home = ({ viewMode, refetchHostels }) => {
+	const { status, hostels, error, refetch } = useFetchHostels();
 	const [center, setCenter] = useState([57.8, -4.1]);
 	const [selectedTrip, setSelectedTrip] = useState(null);
 
@@ -20,7 +20,11 @@ const Home = ({ viewMode }) => {
 				<div className="row">
 					<div className="col-md-3 my-5">
 						{viewMode === 'hostels' ? (
-							<Search hostels={hostels} onHostelClick={handleHostelClick} />
+							<Search
+								hostels={hostels}
+								onHostelClick={handleHostelClick}
+								refetchHostels={refetch}
+							/>
 						) : (
 							<Trips
 								setSelectedTrip={setSelectedTrip}

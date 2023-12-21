@@ -4,7 +4,7 @@ import SearchInput from '../common/SearchInput';
 import CafeFilter from './CafeFilter';
 import DisplayHostels from './DisplayHostels';
 
-const Search = ({ hostels, onHostelClick }) => {
+const Search = ({ hostels, onHostelClick, refetchHostels }) => {
 	const [searchField, setSearchField] = useState('');
 	const [cafeFilter, setCafeFilter] = useState(false);
 
@@ -37,7 +37,11 @@ const Search = ({ hostels, onHostelClick }) => {
 			</Row>
 
 			<hr />
-			<DisplayHostels hostels={filterHostels()} onHostelClick={onHostelClick} />
+			<DisplayHostels
+				hostels={filterHostels()}
+				onHostelClick={onHostelClick}
+				refetchHostels={refetchHostels}
+			/>
 		</div>
 	);
 };

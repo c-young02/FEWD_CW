@@ -3,7 +3,7 @@ import AverageStars from '../Stars/AverageStars';
 import HostelModal from '../HostelModal/HostelModal';
 import useModal from '../common/useModal';
 
-const Hostel = ({ item, onHostelClick }) => {
+const Hostel = ({ item, onHostelClick, refetchHostels }) => {
 	const { show, handleShow, handleClose } = useModal();
 
 	const handleClick = () => {
@@ -23,7 +23,12 @@ const Hostel = ({ item, onHostelClick }) => {
 					<AverageStars data={calculateAverageStars()} />
 				</td>
 			</tr>
-			<HostelModal show={show} handleClose={handleClose} hostel={item} />
+			<HostelModal
+				show={show}
+				handleClose={handleClose}
+				hostel={item}
+				refetchHostels={refetchHostels}
+			/>
 		</>
 	);
 };

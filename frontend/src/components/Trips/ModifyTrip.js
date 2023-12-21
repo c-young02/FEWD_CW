@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useFetchData from '../common/useFetchData';
+import useFetchHostels from '../common/useFetchHostels';
 import TitleInput from './TitleInput';
 import Stages from './Stages';
 import useStagesReducer from './useStagesReducer';
@@ -7,7 +7,7 @@ import useFormValidation from './useFormValidation';
 import useFormSubmission from './useFormSubmission';
 
 export default function CreateTrip({ initialData, setView }) {
-	const { hostels } = useFetchData();
+	const { hostels } = useFetchHostels();
 	const { stages, handleAddStage, handleDeleteStage, handleStageChange } =
 		useStagesReducer(initialData ? initialData.stages : []);
 	const { title, setTitle, message, setMessage, validateForm } =

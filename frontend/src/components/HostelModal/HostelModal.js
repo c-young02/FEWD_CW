@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 
-const HostelModal = ({ show, handleClose, hostel }) => {
+const HostelModal = ({ show, handleClose, hostel, refetchHostels }) => {
 	const { name, reviews } = hostel;
 	const [showReviews, setShowReviews] = useState(false);
 	const [searchField, setSearchField] = useState('');
@@ -33,6 +33,7 @@ const HostelModal = ({ show, handleClose, hostel }) => {
 				filteredReviews={filteredReviews}
 				activeKey={activeKey}
 				setActiveKey={setActiveKey}
+				refetchHostels={refetchHostels}
 			/>
 		</Modal>
 	);

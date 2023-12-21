@@ -4,7 +4,7 @@ import SelectStar from '../Stars/selectStar';
 import useFormSubmission from './submitReview';
 import validateReview from './validateReview';
 
-const CreateReview = ({ hostelId }) => {
+const CreateReview = ({ hostelId, refetchHostels }) => {
 	const [reviewText, setReviewText] = useState(''); // Initialize to empty string
 	const [rating, setRating] = useState(0); // Initialize to 0
 	const [message, setMessage] = useState('');
@@ -25,7 +25,9 @@ const CreateReview = ({ hostelId }) => {
 		}
 
 		event.preventDefault();
-		handleSubmitReview(event);
+		handleSubmitReview(event).then(() => {
+			refetchHostels();
+		});
 	};
 
 	return (
