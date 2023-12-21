@@ -6,14 +6,17 @@ import TripRoute from './TripRoute';
 import { Modal } from 'react-bootstrap';
 import { deleteTrip } from './deleteTrip';
 import { fetchTrip } from './fetchTrip';
-import CreateTrip from './ModifyTrip';
 
-const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
+const ViewTrips = ({
+	setSelectedTrip,
+	selectedTrip,
+	setTripToEdit,
+	setView,
+}) => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const { trips, error, refetch } = useFetchData();
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
-	const [tripToEdit, setTripToEdit] = useState(null);
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
@@ -45,6 +48,8 @@ const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 			const tripDetails = await fetchTrip(id);
 			// Set the fetched trip as the trip to edit
 			setTripToEdit(tripDetails);
+			// Set the view to 'create'
+			setView('create');
 		} catch (error) {
 			console.error(error);
 		}
@@ -61,17 +66,11 @@ const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 
 	return (
 		<div className="mt-3">
-			{tripToEdit ? (
-				<CreateTrip initialData={tripToEdit} />
-			) : (
-				<>
-					<SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-					{filteredTrips.map(renderTrip)}
-					<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
-					{selectedTrip && selectedTrip.stages.length <= 1 && (
-						<p>Selected trip is too short to plot route.</p>
-					)}
-				</>
+			<SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+			{filteredTrips.map(renderTrip)}
+			<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
+			{selectedTrip && selectedTrip.stages.length <= 1 && (
+				<p>Selected trip is too short to plot route.</p>
 			)}
 			<Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
 				<Modal.Header closeButton>

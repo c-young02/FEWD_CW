@@ -6,7 +6,7 @@ import useStagesReducer from './useStagesReducer';
 import useFormValidation from './useFormValidation';
 import useFormSubmission from './useFormSubmission';
 
-export default function CreateTrip({ initialData }) {
+export default function CreateTrip({ initialData, setView }) {
 	const { hostels } = useFetchData();
 	const { stages, handleAddStage, handleDeleteStage, handleStageChange } =
 		useStagesReducer(initialData ? initialData.stages : []);
@@ -17,7 +17,8 @@ export default function CreateTrip({ initialData }) {
 		stages,
 		validateForm,
 		setMessage,
-		initialData
+		initialData,
+		setView
 	);
 
 	useEffect(() => {

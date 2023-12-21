@@ -3,7 +3,8 @@ export default function useFormSubmission(
 	initialStages,
 	validateForm,
 	setMessage,
-	initialData
+	initialData,
+	setView
 ) {
 	const handleSubmit = async (event) => {
 		const token = localStorage.getItem('token');
@@ -46,6 +47,7 @@ export default function useFormSubmission(
 						? 'Trip updated successfully!'
 						: 'Trip created successfully!'
 				);
+				setView('view');
 			} else {
 				setMessage(
 					initialData ? 'Failed to update trip.' : 'Failed to create trip.'
