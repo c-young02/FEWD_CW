@@ -33,12 +33,10 @@ const CreateReview = ({ hostelId, refetchHostels }) => {
 	return (
 		<div>
 			<hr />
-			<h1>{hostelId}</h1>
-			<h4>Create Review</h4>
 			{message && <Alert variant="danger">{message}</Alert>}
 			<Form onSubmit={handleSubmitWithLogging}>
 				<Form.Group className="mb-3">
-					<Form.Label>Review</Form.Label>
+					<Form.Label>Create Review</Form.Label>
 					<Form.Control
 						as="textarea"
 						rows={3}
