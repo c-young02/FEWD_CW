@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { authenticate } from '../common/Authenticate';
-import CreateTrip from './CreateTrip';
+import CreateTrip from './ModifyTrip';
 import ViewTrips from './ViewTrips';
 
 export default function Trips({ setSelectedTrip, selectedTrip }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [view, setView] = useState('create');
+	const [view, setView] = useState('view');
 
+	// Authenticate user when component mounts
 	useEffect(() => {
 		authenticate(setIsLoggedIn);
 	}, []);
 
+	// If user is logged in, display trips or create trip view based on current view
 	if (isLoggedIn) {
 		return (
 			<div>
@@ -19,7 +21,7 @@ export default function Trips({ setSelectedTrip, selectedTrip }) {
 						onClick={() => setView(view === 'view' ? 'create' : 'view')}
 						className="btn btn-primary"
 					>
-						{view === 'view' ? 'Change to Create Trip' : 'Change to View Trips'}
+						{view === 'view' ? 'Create a Trip' : 'Back to Trips'}
 					</button>
 				</div>
 				{view === 'view' ? (
@@ -33,6 +35,7 @@ export default function Trips({ setSelectedTrip, selectedTrip }) {
 			</div>
 		);
 	} else {
+		// If user is not logged in, prompt them to log in
 		return <p>Please log in</p>;
 	}
 }

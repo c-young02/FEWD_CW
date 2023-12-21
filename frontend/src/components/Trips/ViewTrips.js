@@ -6,7 +6,7 @@ import TripRoute from './TripRoute';
 import { Modal } from 'react-bootstrap';
 import { deleteTrip } from './deleteTrip';
 import { fetchTrip } from './fetchTrip';
-import CreateTrip from './CreateTrip';
+import CreateTrip from './ModifyTrip';
 
 const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -61,15 +61,17 @@ const ViewTrips = ({ setSelectedTrip, selectedTrip }) => {
 
 	return (
 		<div className="mt-3">
-			<SearchInput value={searchTerm} onChange={setSearchTerm} />
 			{tripToEdit ? (
 				<CreateTrip initialData={tripToEdit} />
 			) : (
-				filteredTrips.map(renderTrip)
-			)}
-			<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
-			{selectedTrip && selectedTrip.stages.length <= 1 && (
-				<p>Selected trip is too short to plot route.</p>
+				<>
+					<SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+					{filteredTrips.map(renderTrip)}
+					<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
+					{selectedTrip && selectedTrip.stages.length <= 1 && (
+						<p>Selected trip is too short to plot route.</p>
+					)}
+				</>
 			)}
 			<Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
 				<Modal.Header closeButton>
