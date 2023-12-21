@@ -479,5 +479,56 @@ class Hostel {
 			throw err;
 		}
 	}
+
+	async findUserReviews(username) {
+		try {
+			// Find all hostels
+			const hostels = await new Promise((resolve, reject) => {
+				this.hostel.find({}, (err, docs) => {
+					if (err) {
+						console.error('Error during hostel search:', err);
+						reject(err);
+					} else {
+						resolve(docs);
+					}
+				});
+			});
+
+			// Filter out the reviews that match the supplied username
+			const userReviews = hostels.reduce((reviews, hostel) => {
+				const matchingReviews = hostel.reviews
+					.filter((review) => review.reviewer === username)
+					.map((review) => ({ ...review, hostelName: hostel.name })); // Add the hostel name to each review
+
+				return reviews.concat(matchingReviews);
+			}, []);
+
+			console.log('Number of matching reviews:', userReviews.length);
+			return userReviews;
+		} catch (err) {
+			console.error('Failed to find user reviews:', err);
+			throw err;
+		}
+	}
+
+	deleteReview(id) {
+		return new Promise((resolve, reject) => {
+			this.hostel.update(
+				{ 'reviews.id': id },
+				{ $pull: { reviews: { id: id } } },
+				{},
+				(err, numRemoved) => {
+					if (err) {
+						reject(err);
+					} else if (numRemoved === 0) {
+						reject(new Error('No reviews were deleted.'));
+					} else {
+						this.hostel.persistence.compactDatafile();
+						resolve(numRemoved);
+					}
+				}
+			);
+		});
+	}
 }
 module.exports = Hostel;

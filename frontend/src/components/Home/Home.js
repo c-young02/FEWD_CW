@@ -5,7 +5,7 @@ import Trips from '../Trips/Trips';
 import Map from '../Map/Map';
 import Loading from '../common/Loading';
 
-const Home = ({ viewMode, refetchHostels }) => {
+const Home = ({ viewMode }) => {
 	const { status, hostels, error, refetch } = useFetchHostels();
 	const [center, setCenter] = useState([57.8, -4.1]);
 	const [selectedTrip, setSelectedTrip] = useState(null);

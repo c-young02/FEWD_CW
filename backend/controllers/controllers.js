@@ -72,6 +72,38 @@ exports.createReview = function (req, res) {
 		});
 };
 
+exports.deleteReview = function (req, res) {
+	const id = req.query.id;
+	hostel
+		.deleteReview(id)
+		.then(() => {
+			console.log('Review deleted successfully.');
+			res.status(200).json({ message: 'Review deleted successfully.' });
+		})
+		.catch((err) => {
+			console.error('Failed to delete review:', err);
+			res
+				.status(500)
+				.json({ error: 'An error occurred while deleting the review.' });
+		});
+};
+
+exports.listUserReviews = async (req, res) => {
+	const { username } = req.query;
+
+	try {
+		// Use the find method of Datastore to find reviews by their username
+		console.log(`Attempting to find reviews for user: ${username}`);
+		const docs = await hostel.findUserReviews(username);
+
+		console.log(`Found ${docs.length} reviews for user: ${username}`);
+		res.status(200).json(docs);
+	} catch (err) {
+		console.log(`Error occurred: ${err}`);
+		res.status(500).send(err);
+	}
+};
+
 exports.listTrips = function (req, res) {
 	const username = req.query.username;
 	trip

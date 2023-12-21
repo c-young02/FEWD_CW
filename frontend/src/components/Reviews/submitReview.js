@@ -6,12 +6,9 @@ export default function useFormSubmission(
 ) {
 	const handleSubmitReview = async (event) => {
 		event.preventDefault();
-		console.log('useFormSubmission is called');
 
 		const username = localStorage.getItem('username');
 		const token = localStorage.getItem('token');
-
-		console.log('Username:', username); // Log the username
 
 		if (!username) {
 			setMessage('No username found. Please log in.');
@@ -35,8 +32,6 @@ export default function useFormSubmission(
 					rating,
 				}),
 			});
-
-			console.log('Response:', response); // Log the response
 
 			if (response.ok) {
 				setMessage('Review created successfully!');

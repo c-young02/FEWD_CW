@@ -13,9 +13,7 @@ export default function Trips({ setSelectedTrip, selectedTrip }) {
 		authenticate(setIsLoggedIn);
 	}, []);
 
-	useEffect(() => {
-		console.log('tripToEdit changed:', tripToEdit);
-	}, [tripToEdit]);
+	useEffect(() => {}, [tripToEdit]);
 	// If user is logged in, display trips or create trip view based on current view
 	if (isLoggedIn) {
 		return (

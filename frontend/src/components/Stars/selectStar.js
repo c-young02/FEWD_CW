@@ -16,9 +16,8 @@ export default function SelectStar({ totalStars = 5, onStarSelect }) {
 	return (
 		<div className="d-flex align-items-center">
 			{createArray(totalStars).map((n, i) => (
-				<h3>
+				<h3 key={i}>
 					<Star
-						key={i}
 						selected={selectedStars > i}
 						onSelect={() => setSelectedStars(i + 1)}
 					/>

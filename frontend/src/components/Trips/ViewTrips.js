@@ -43,7 +43,6 @@ const ViewTrips = ({
 	};
 
 	const handleEdit = async (id) => {
-		console.log('Editing trip', id);
 		try {
 			const tripDetails = await fetchTrip(id);
 			// Set the fetched trip as the trip to edit

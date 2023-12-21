@@ -8,21 +8,24 @@ const useFetchTrips = () => {
 	const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 	const token = localStorage.getItem('token');
 
-	const getHostelLatLon = async (hostelName) => {
-		const response = await fetch(
-			`${baseUrl}/gethostel?name=${encodeURIComponent(hostelName)}`
-		);
-		const hostel = await response.json();
+	const getHostelLatLon = useCallback(
+		async (hostelName) => {
+			const response = await fetch(
+				`${baseUrl}/gethostel?name=${encodeURIComponent(hostelName)}`
+			);
+			const hostel = await response.json();
 
-		if (hostel && hostel.location) {
-			const {
-				location: { lat, long },
-			} = hostel;
-			return { lat, long };
-		} else {
-			throw new Error(`No hostel found with name ${hostelName}`);
-		}
-	};
+			if (hostel && hostel.location) {
+				const {
+					location: { lat, long },
+				} = hostel;
+				return { lat, long };
+			} else {
+				throw new Error(`No hostel found with name ${hostelName}`);
+			}
+		},
+		[baseUrl]
+	); // Add useCallback here
 
 	const fetchTrips = useCallback(async () => {
 		const username = localStorage.getItem('username');
@@ -55,7 +58,7 @@ const useFetchTrips = () => {
 			setStatus('error');
 			setError(error);
 		}
-	}, [baseUrl, token]);
+	}, [baseUrl, token, getHostelLatLon]);
 
 	useEffect(() => {
 		fetchTrips();

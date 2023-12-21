@@ -44,6 +44,18 @@ router.put(
 );
 
 router.get(
+	'/getReviews',
+	passport.authenticate('jwt', { session: false }),
+	controller.listUserReviews
+);
+
+router.delete(
+	'/deleteReview',
+	passport.authenticate('jwt', { session: false }),
+	controller.deleteReview
+);
+
+router.get(
 	'/authenticate',
 	passport.authenticate('jwt', { session: false }),
 	(req, res) => {

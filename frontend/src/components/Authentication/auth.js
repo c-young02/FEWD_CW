@@ -6,7 +6,6 @@ export const handleSuccessfulLogin = (response, username) => {
 	try {
 		localStorage.setItem('token', response.token);
 		localStorage.setItem('username', username);
-		console.log(response.token);
 		return { success: true };
 	} catch (error) {
 		return { error: 'Failed to save token or username in local storage' };

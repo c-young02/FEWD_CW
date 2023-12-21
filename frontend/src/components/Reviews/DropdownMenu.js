@@ -16,13 +16,12 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 	</button>
 ));
 
-const DropdownMenu = ({ onEdit, onDelete }) => (
+const DropdownMenu = ({ onDelete, reviewId }) => (
 	<Dropdown>
 		<Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components" />
 
 		<Dropdown.Menu>
-			<Dropdown.Item onClick={onEdit}>Edit</Dropdown.Item>
-			<Dropdown.Item onClick={onDelete} className="text-danger">
+			<Dropdown.Item onClick={() => onDelete(reviewId)} className="text-danger">
 				Delete
 			</Dropdown.Item>
 		</Dropdown.Menu>
