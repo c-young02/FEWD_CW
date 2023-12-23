@@ -14,7 +14,7 @@ const ViewTrips = ({
 	setTripToEdit,
 	setView,
 }) => {
-	const [searchTerm, setSearchTerm] = useState('');
+	const [searchField, setSearchTerm] = useState('');
 	const { trips, error, refetch } = useFetchTrips();
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
@@ -27,9 +27,9 @@ const ViewTrips = ({
 	// Filter the trips based on the search term
 	const filteredTrips = trips.filter(
 		(trip) =>
-			trip.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			trip.title.toLowerCase().includes(searchField.toLowerCase()) ||
 			trip.stages.some((stage) =>
-				stage.hostel.toLowerCase().includes(searchTerm.toLowerCase())
+				stage.hostel.toLowerCase().includes(searchField.toLowerCase())
 			)
 	);
 
@@ -70,7 +70,8 @@ const ViewTrips = ({
 	// Render the component
 	return (
 		<div className="mt-3">
-			<SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+			<SearchInput value={searchField} onChange={setSearchTerm} />
+
 			{filteredTrips.map(renderTrip)}
 			<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
 			{selectedTrip && selectedTrip.stages.length <= 1 && (

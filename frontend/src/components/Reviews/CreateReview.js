@@ -19,7 +19,7 @@ const CreateReview = ({ hostelId, refetchHostels }) => {
 	);
 
 	// Function to handle form submission with logging
-	const handleSubmitWithLogging = (event) => {
+	const handleSubmit = (event) => {
 		const validationError = validateReview(reviewText, rating); // Validate the review
 		if (validationError) {
 			event.preventDefault();
@@ -37,7 +37,7 @@ const CreateReview = ({ hostelId, refetchHostels }) => {
 		<div>
 			<hr />
 			{message && <Alert variant="danger">{message}</Alert>}
-			<Form onSubmit={handleSubmitWithLogging}>
+			<Form onSubmit={handleSubmit}>
 				<Form.Group className="mb-3">
 					<Form.Label>Create Review</Form.Label>
 					<Form.Control

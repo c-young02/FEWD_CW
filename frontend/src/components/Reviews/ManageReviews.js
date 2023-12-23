@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Accordion } from 'react-bootstrap';
+import { Modal, Accordion, Alert } from 'react-bootstrap';
 import useFetchUserReviews from './userReviews';
 import StarRating from '../Stars/StarRating';
 import DropdownMenu from './DropdownMenu';
@@ -9,6 +9,7 @@ import { deleteReview } from './deleteReview';
 const ManageReviews = ({ show, handleClose }) => {
 	const [reviews, setReviews] = useState([]);
 	const { fetchUserReviews } = useFetchUserReviews(setReviews);
+	const [message, setMessage] = useState('');
 
 	// Fetch user reviews when the modal is shown
 	useEffect(() => {
@@ -21,7 +22,7 @@ const ManageReviews = ({ show, handleClose }) => {
 	const handleDelete = async (id) => {
 		try {
 			await deleteReview(id);
-			handleClose();
+			setMessage('Review successfully deleted');
 		} catch (error) {}
 	};
 
@@ -31,6 +32,7 @@ const ManageReviews = ({ show, handleClose }) => {
 				<Modal.Title>Manage Reviews</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
+				{message && <Alert variant="success">{message}</Alert>}
 				{reviews.map((review, index) => (
 					<Accordion key={index} className="bg-light border my-3">
 						<Accordion.Header>
