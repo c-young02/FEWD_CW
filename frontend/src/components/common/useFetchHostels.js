@@ -6,7 +6,7 @@ const useFetchHostels = () => {
 	const [error, setError] = useState(null);
 	const [refetchIndex, setRefetchIndex] = useState(0);
 
-	const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001'; // Base URL for API
+	const baseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001'; // Base URL for API
 
 	// Function to fetch hostels from API
 	const fetchHostels = useCallback(() => {

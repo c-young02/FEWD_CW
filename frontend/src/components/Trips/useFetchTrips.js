@@ -6,7 +6,7 @@ const useFetchTrips = () => {
 	const [status, setStatus] = useState('idle');
 	const [error, setError] = useState(null);
 
-	const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001'; // Base URL for API
+	const baseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001'; // Base URL for API
 	const token = localStorage.getItem('token'); // Retrieve token from local storage
 
 	// Function to get latitude and longitude of a hostel
