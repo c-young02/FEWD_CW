@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchInput from '../common/SearchInput';
 import Trip from './Trip';
-import useFetchTrips from '../common/useFetchTrips';
+import useFetchTrips from './useFetchTrips';
 import TripRoute from './TripRoute';
 import { deleteTrip } from './deleteTrip';
 import { fetchTrip } from './fetchTrip';

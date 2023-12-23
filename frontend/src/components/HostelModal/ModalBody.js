@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import HostelInfo from './HostelInfo';
 import Rating from './Rating';
@@ -31,6 +31,10 @@ const ModalBody = ({
 		</Tooltip>
 	);
 
+	const toggleCreateReview = useCallback(() => {
+		setShowCreateReview((prev) => !prev);
+	}, []);
+
 	return (
 		<Modal.Body>
 			<HostelInfo hostel={hostel} />
@@ -48,10 +52,7 @@ const ModalBody = ({
 				</div>
 				{isLoggedIn ? (
 					// If the user is logged in, display a button to toggle the create review form
-					<Button
-						variant="secondary"
-						onClick={() => setShowCreateReview((prev) => !prev)}
-					>
+					<Button variant="secondary" onClick={toggleCreateReview}>
 						{/*Toggle create review form */}
 						{showCreateReview ? 'Hide Create Review' : 'Create Review'}
 					</Button>

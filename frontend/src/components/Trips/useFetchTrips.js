@@ -45,7 +45,6 @@ const useFetchTrips = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log('Fetched data:', data); // Add console log here
 
 				// Find the trips of the current user
 				const userTrips =
@@ -59,7 +58,6 @@ const useFetchTrips = () => {
 					}
 				}
 
-				console.log('Updated trips:', userTrips); // Add console log here
 				setTrips(userTrips);
 				setStatus('fetched');
 			}
@@ -72,7 +70,6 @@ const useFetchTrips = () => {
 
 	// Effect hook to call fetchTrips on component mount
 	useEffect(() => {
-		console.log('useEffect called'); // Add console log here
 		fetchTrips();
 	}, [fetchTrips]);
 

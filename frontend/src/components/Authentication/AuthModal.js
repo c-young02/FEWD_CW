@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Alert } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import useModal from '../common/useModal';
-import AuthForm from './AuthForm';
-import AuthToggleButton from './AuthToggleButton';
 import UserDropdown from './UserDropdown';
 import { handleLogin } from './Login';
 import { handleRegistration } from './register';
 import { handleSuccessfulLogin, handleLogout } from './auth';
+import LoginSignupButton from './LoginSignupButton';
+import AuthModalBody from './AuthModalBody';
 
 const AuthModal = () => {
 	// Retrieve the username from local storage if it exists
@@ -61,50 +61,28 @@ const AuthModal = () => {
 	return (
 		<>
 			{loggedInUser ? (
-				// Show user dropdown if user is logged in
 				<UserDropdown
 					username={loggedInUser}
 					handleLogout={() => handleLogout(setLoggedInUser, handleClose)}
 				/>
 			) : (
-				// Show login and sign up buttons if user is not logged in
-				<>
-					<Button
-						variant="outline-primary mx-2"
-						onClick={() => {
-							handleShow();
-							setIsLogin(true);
-						}}
-					>
-						Log In
-					</Button>
-					<Button
-						variant="outline-light"
-						onClick={() => {
-							handleShow();
-							setIsLogin(false);
-						}}
-					>
-						Sign Up
-					</Button>
-				</>
+				<LoginSignupButton handleShow={handleShow} setIsLogin={setIsLogin} />
 			)}
-			{/* Modal for login/registration form */}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>{isLogin ? 'Log In' : 'Sign Up'}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{error && <Alert variant="danger">{error}</Alert>}{' '}
-					<AuthForm
+					<AuthModalBody
 						isLogin={isLogin}
 						username={username}
 						setUsername={setUsername}
 						password={password}
 						setPassword={setPassword}
 						handleSubmit={handleSubmit}
+						setIsLogin={setIsLogin}
+						error={error}
 					/>
-					<AuthToggleButton isLogin={isLogin} setIsLogin={setIsLogin} />
 				</Modal.Body>
 			</Modal>
 		</>

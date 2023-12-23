@@ -3,7 +3,7 @@ import useFetchHostels from '../common/useFetchHostels';
 import Search from '../Hostel/Search';
 import Trips from '../Trips/Trips';
 import Map from '../Map/Map';
-import Loading from '../common/Loading';
+import Loading from './Loading';
 
 // Home component
 const Home = ({ viewMode }) => {
