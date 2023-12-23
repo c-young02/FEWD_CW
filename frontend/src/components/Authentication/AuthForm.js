@@ -20,6 +20,8 @@ const AuthForm = ({
 				onChange={(e) => setUsername(e.target.value)} // Updates username state on input change
 				required
 				autocomplete="username"
+				minLength={5} // Minimum length is 5 characters
+				maxLength={20} // Maximum length is 20 characters
 			/>
 		</Form.Group>
 
@@ -32,6 +34,8 @@ const AuthForm = ({
 				onChange={(e) => setPassword(e.target.value)}
 				required
 				autocomplete="current-password"
+				minLength={8} // Minimum length is 8 characters
+				maxLength={64} // Maximum length is 64 characters
 			/>
 		</Form.Group>
 		<Button variant="primary" type="submit">

@@ -46,6 +46,7 @@ const CreateReview = ({ hostelId, refetchHostels }) => {
 						value={reviewText}
 						onChange={(e) => setReviewText(e.target.value)}
 						required
+						maxLength={512} // Maximum length is 20 characters
 					/>
 				</Form.Group>
 				<Form.Group className="mb-3">

@@ -22,6 +22,10 @@ const ViewTrips = ({
 		return <div>Error: {error.message}</div>;
 	}
 
+	if (trips.length === 0) {
+		return <div>No trips available. Please add a new trip.</div>;
+	}
+
 	// Filter the trips based on the search term
 	const filteredTrips = trips.filter(
 		(trip) =>

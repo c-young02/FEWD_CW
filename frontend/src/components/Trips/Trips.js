@@ -54,6 +54,8 @@ export default function Trips({ setSelectedTrip, selectedTrip }) {
 		);
 	} else {
 		// If user is not logged in, prompt them to log in
-		return <p>Please log in</p>;
+		return (
+			<Alert variant="danger">Please log in to start planning trips.</Alert>
+		);
 	}
 }

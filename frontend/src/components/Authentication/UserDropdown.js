@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import { FaUser } from 'react-icons/fa';
 import ManageReviews from '../Reviews/ManageReviews';
 
 // UserDropdown is a functional component that renders a dropdown menu for the logged-in user
@@ -19,8 +20,12 @@ const UserDropdown = ({ username, handleLogout }) => {
 	return (
 		<>
 			<Dropdown>
-				<Dropdown.Toggle variant="success" id="dropdown-basic">
-					Welcome, {username}
+				<Dropdown.Toggle
+					variant="secondary"
+					id="dropdown-basic"
+					className="mx-3"
+				>
+					<FaUser /> {username}
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>

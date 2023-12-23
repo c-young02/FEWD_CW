@@ -11,6 +11,7 @@ export default function TitleInput({ title, setTitle }) {
 				onChange={(e) => setTitle(e.target.value)}
 				className="form-control"
 				required
+				maxLength={32} // Maximum length is 32 characters
 			/>
 		</div>
 	);

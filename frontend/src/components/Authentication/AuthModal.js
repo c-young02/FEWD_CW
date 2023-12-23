@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Alert } from 'react-bootstrap';
 import useModal from '../common/useModal';
 import AuthForm from './AuthForm';
 import AuthToggleButton from './AuthToggleButton';
@@ -49,7 +49,10 @@ const AuthModal = () => {
 			}
 			// Update logged in user after successful login/registration
 			setLoggedInUser(localStorage.getItem('username'));
-			handleClose();
+			// Only close the modal if login/registration was successful
+			if (localStorage.getItem('username')) {
+				handleClose();
+			}
 		} catch (error) {
 			setError('An unexpected error occurred. Please try again.');
 		}
@@ -92,7 +95,7 @@ const AuthModal = () => {
 					<Modal.Title>{isLogin ? 'Log In' : 'Sign Up'}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{error && <p className="text-danger">{error}</p>}
+					{error && <Alert variant="danger">{error}</Alert>}{' '}
 					<AuthForm
 						isLogin={isLogin}
 						username={username}
