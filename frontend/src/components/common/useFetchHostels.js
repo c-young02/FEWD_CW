@@ -29,7 +29,7 @@ const useFetchHostels = () => {
 	// Effect hook to call fetchHostels on component mount and whenever refetchIndex changes
 	useEffect(() => {
 		fetchHostels();
-	}, [fetchHostels]);
+	}, [fetchHostels, refetchIndex]);
 
 	// Function to trigger refetch
 	const refetch = () => setRefetchIndex(refetchIndex + 1);

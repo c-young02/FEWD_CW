@@ -10,8 +10,8 @@ const Trip = ({ trip, onEdit, onDelete }) => (
 			<div className="flex-grow-1">
 				<div id={`trip-${trip.id}`}>
 					{/* Map over the stages of the trip and render each one */}
-					{trip.stages.map((stage) => (
-						<div key={stage.id}>
+					{trip.stages.map((stage, index) => (
+						<div key={index}>
 							Hostel: {stage.hostel}
 							<br />
 							Arrival Date:{' '}

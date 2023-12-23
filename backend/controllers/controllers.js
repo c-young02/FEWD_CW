@@ -18,9 +18,7 @@ exports.listHostel = function (req, res) {
 		.then((updatedList) => {
 			res.json(updatedList);
 		})
-		.catch((err) => {
-			console.log('promise rejected', err);
-		});
+		.catch((err) => {});
 };
 
 exports.getHostel = async (req, res) => {
@@ -31,7 +29,6 @@ exports.getHostel = async (req, res) => {
 		// Use the find method of Datastore to find a hostel by its name
 		hostel.hostel.find({ name: name }, function (err, docs) {
 			if (err) {
-				console.log(`Error occurred: ${err}`); // Log the error message
 				res.status(500).send(err);
 			} else if (docs.length > 0) {
 				res.json(docs[0]);
@@ -40,28 +37,19 @@ exports.getHostel = async (req, res) => {
 			}
 		});
 	} catch (err) {
-		console.log(`Error occurred: ${err}`); // Log the error message
 		res.status(500).send(err);
 	}
 };
 
 exports.createReview = function (req, res) {
-	console.log('updateTrip called');
-
 	const id = req.body.hostelId;
 	const username = req.body.username;
 	const rating = req.body.rating;
 	const review = req.body.reviewText;
 
-	console.log('id:', id);
-	console.log('username:', username);
-	console.log('rating:', rating);
-	console.log('review:', review);
-
 	hostel
 		.createReview(id, username, rating, review)
 		.then(() => {
-			console.log('Review created successfully.');
 			res.status(200).json({ message: 'Review created successfully.' });
 		})
 		.catch((err) => {
@@ -77,7 +65,6 @@ exports.deleteReview = function (req, res) {
 	hostel
 		.deleteReview(id)
 		.then(() => {
-			console.log('Review deleted successfully.');
 			res.status(200).json({ message: 'Review deleted successfully.' });
 		})
 		.catch((err) => {
@@ -93,13 +80,9 @@ exports.listUserReviews = async (req, res) => {
 
 	try {
 		// Use the find method of Datastore to find reviews by their username
-		console.log(`Attempting to find reviews for user: ${username}`);
 		const docs = await hostel.findUserReviews(username);
-
-		console.log(`Found ${docs.length} reviews for user: ${username}`);
 		res.status(200).json(docs);
 	} catch (err) {
-		console.log(`Error occurred: ${err}`);
 		res.status(500).send(err);
 	}
 };
@@ -126,7 +109,6 @@ exports.addTrip = function (req, res) {
 			res.status(200).json({ message: 'Trip added successfully.' });
 		})
 		.catch((err) => {
-			console.log('promise rejected', err);
 			res
 				.status(500)
 				.json({ error: 'An error occurred while adding the trip.' });
@@ -139,7 +121,6 @@ exports.deleteTrip = function (req, res) {
 	trip
 		.deleteEntry(username, id)
 		.then(() => {
-			console.log('Trip deleted successfully.');
 			res.status(200).json({ message: 'Trip deleted successfully.' });
 		})
 		.catch((err) => {
@@ -169,20 +150,13 @@ exports.showTrip = function (req, res) {
 };
 
 exports.updateTrip = function (req, res) {
-	console.log('updateTrip called');
-
 	const id = req.body.id;
 	const username = req.body.username;
 	const newTripData = req.body;
 
-	console.log('id:', id);
-	console.log('username:', username);
-	console.log('newTripData:', newTripData);
-
 	trip
 		.updateEntry(username, id, newTripData)
 		.then(() => {
-			console.log('Trip updated successfully.');
 			res.status(200).json({ message: 'Trip updated successfully.' });
 		})
 		.catch((err) => {
@@ -206,7 +180,6 @@ exports.processLogin = function (req, res, next) {
 				.status(401)
 				.json({ success: false, msg: 'Incorrect username or password.' });
 		}
-		console.log(user);
 		const isValid = utils.validPassword(
 			req.body.password,
 			user.hash,
@@ -249,8 +222,6 @@ exports.processNewUser = function (req, res, next) {
 				hash: hash,
 				salt: salt,
 			};
-
-			console.log(newUser);
 
 			db.insert(newUser, function (err, user) {
 				res.json({ success: true, user: user });

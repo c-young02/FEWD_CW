@@ -4,7 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 
 class Trips {
 	constructor(tripFilePath) {
-		console.log(tripFilePath);
 		if (tripFilePath) {
 			this.trip = new nedb(tripFilePath);
 			tripFilePath;
@@ -44,16 +43,13 @@ class Trips {
 
 	displayEntry(username, id) {
 		return new Promise((resolve, reject) => {
-			console.log(`Fetching user with username: ${username}`);
 			this.trip.findOne({ username: username }, function (err, user) {
 				if (err) {
 					console.error('Error fetching user:', err);
 					reject(err);
 				} else {
-					console.log('User fetched successfully:', user);
 					// Filter the trips array to get the trip with the matching id
 					const trip = user.trips.find((trip) => trip.id === id);
-					console.log(`Trip with id ${id} fetched:`, trip);
 					resolve(trip);
 				}
 			});
@@ -94,8 +90,6 @@ class Trips {
 	}
 
 	async updateEntry(username, id, updatedTrip) {
-		console.log('updateEntry called');
-
 		try {
 			// Remove the old trip
 			await new Promise((resolve, reject) => {
@@ -108,7 +102,6 @@ class Trips {
 							console.error('Error during trip removal:', err);
 							reject(err);
 						} else {
-							console.log('Old trip removed');
 							resolve(numRemoved);
 						}
 					}
@@ -126,7 +119,6 @@ class Trips {
 							console.error('Error during trip update:', err);
 							reject(err);
 						} else {
-							console.log('Trip updated successfully');
 							resolve(affectedDocuments);
 						}
 					}
@@ -135,7 +127,6 @@ class Trips {
 
 			// Compact the data file after the update operation
 			try {
-				console.log('Compacting data file');
 				this.trip.persistence.compactDatafile();
 			} catch (err) {
 				console.error('Failed to compact data file:', err);

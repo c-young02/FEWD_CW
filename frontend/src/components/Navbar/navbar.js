@@ -23,7 +23,7 @@ function TopNavbar({ viewMode, setViewMode }) {
 			className="p-3"
 		>
 			<Container fluid>
-				<Navbar.Brand>Logo</Navbar.Brand>
+				<Navbar.Brand>Hostel Seeker</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">

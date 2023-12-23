@@ -8,7 +8,7 @@ import Home from './components/Home/Home';
 
 import './App.css';
 
-function App(refetch) {
+function App() {
 	const [viewMode, setViewMode] = useState('hostels');
 
 	return (
