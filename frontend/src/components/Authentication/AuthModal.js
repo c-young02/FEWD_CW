@@ -9,18 +9,22 @@ import { handleRegistration } from './register';
 import { handleSuccessfulLogin, handleLogout } from './auth';
 
 const AuthModal = () => {
+	// Retrieve the username from local storage if it exists
 	const getInitialUsername = () => localStorage.getItem('username') || '';
 
+	// State variables for user credentials and status
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [loggedInUser, setLoggedInUser] = useState(getInitialUsername());
 
+	// State variables for modal and login/registration form
 	const [isLogin, setIsLogin] = useState(true);
 	const [error, setError] = useState('');
 
+	// Custom hook to control modal visibility
 	const { show, handleClose, handleShow } = useModal();
 
-	// Clear the fields when the modal is closed
+	// Reset form and error when modal is closed
 	useEffect(() => {
 		if (!show) {
 			setUsername('');
@@ -29,6 +33,7 @@ const AuthModal = () => {
 		}
 	}, [show]);
 
+	// Handle form submission for login or registration
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
@@ -42,6 +47,7 @@ const AuthModal = () => {
 					setError
 				);
 			}
+			// Update logged in user after successful login/registration
 			setLoggedInUser(localStorage.getItem('username'));
 			handleClose();
 		} catch (error) {
@@ -52,11 +58,13 @@ const AuthModal = () => {
 	return (
 		<>
 			{loggedInUser ? (
+				// Show user dropdown if user is logged in
 				<UserDropdown
 					username={loggedInUser}
 					handleLogout={() => handleLogout(setLoggedInUser, handleClose)}
 				/>
 			) : (
+				// Show login and sign up buttons if user is not logged in
 				<>
 					<Button
 						variant="outline-primary mx-2"
@@ -78,7 +86,7 @@ const AuthModal = () => {
 					</Button>
 				</>
 			)}
-
+			{/* Modal for login/registration form */}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>{isLogin ? 'Log In' : 'Sign Up'}</Modal.Title>

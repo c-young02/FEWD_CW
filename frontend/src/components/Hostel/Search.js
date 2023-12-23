@@ -4,14 +4,17 @@ import SearchInput from '../common/SearchInput';
 import CafeFilter from './CafeFilter';
 import DisplayHostels from './DisplayHostels';
 
+// Search is a functional component that renders a search input, a cafe filter, and a list of hostels
 const Search = ({ hostels, onHostelClick, refetchHostels }) => {
-	const [searchField, setSearchField] = useState('');
-	const [cafeFilter, setCafeFilter] = useState(false);
+	const [searchField, setSearchField] = useState(''); // State for the search field
+	const [cafeFilter, setCafeFilter] = useState(false); // State for the cafe filter
 
+	// Function to handle toggle of the cafe filter
 	const handleCafeToggle = (value) => {
 		setCafeFilter(value);
 	};
 
+	// Function to filter hostels based on the search field and cafe filter
 	const filterHostels = () => {
 		let filteredHostels = hostels.filter((entry) => {
 			const lowerCaseSearch = searchField.toLowerCase();

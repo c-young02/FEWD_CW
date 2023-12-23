@@ -2,11 +2,12 @@ import React from 'react';
 import Review from './Review';
 import { Accordion } from 'react-bootstrap';
 
+// Reviews is a functional component that renders a list of reviews in an accordion
 const Reviews = ({ reviews, activeKey, setActiveKey }) => (
 	<Accordion
-		activeKey={activeKey}
-		onSelect={(eventKey) =>
-			setActiveKey(eventKey !== activeKey ? eventKey : null)
+		activeKey={activeKey} // The currently active key
+		onSelect={
+			(eventKey) => setActiveKey(eventKey !== activeKey ? eventKey : null) // Set the active key when an accordion item is selected
 		}
 	>
 		{reviews.length > 0 ? (
@@ -16,7 +17,7 @@ const Reviews = ({ reviews, activeKey, setActiveKey }) => (
 				</div>
 			))
 		) : (
-			<p>No reviews found.</p>
+			<p>No reviews found.</p> // Display a message if no reviews are found
 		)}
 	</Accordion>
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 import AverageStars from '../Stars/AverageStars';
 
+// Rating is a functional component that renders the average rating of a set of reviews
 const Rating = ({ reviews }) => {
 	const ratings = reviews.map(({ rating }) => rating);
 

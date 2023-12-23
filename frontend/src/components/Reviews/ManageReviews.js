@@ -5,24 +5,24 @@ import StarRating from '../Stars/StarRating';
 import DropdownMenu from './DropdownMenu';
 import { deleteReview } from './deleteReview';
 
-const ManageReviews = ({ show, handleClose, refetch }) => {
+// ManageReviews is a functional component that renders a modal for managing reviews
+const ManageReviews = ({ show, handleClose }) => {
 	const [reviews, setReviews] = useState([]);
 	const { fetchUserReviews } = useFetchUserReviews(setReviews);
 
+	// Fetch user reviews when the modal is shown
 	useEffect(() => {
 		if (show) {
 			fetchUserReviews();
 		}
-	}, [show]);
+	}, [show, fetchUserReviews]);
 
+	// Function to handle deleting a review
 	const handleDelete = async (id) => {
 		try {
 			await deleteReview(id);
-			console.log('Deleted review');
-			refetch();
-		} catch (error) {
-			console.log(error);
-		}
+			handleClose();
+		} catch (error) {}
 	};
 
 	return (

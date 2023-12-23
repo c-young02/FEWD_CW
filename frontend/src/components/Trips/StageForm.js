@@ -1,5 +1,6 @@
 import React from 'react';
 
+// StageForm is a functional component that renders a form for a stage of a trip
 export default function StageForm({
 	stage: { hostel, arrivalDate, departureDate },
 	index,
@@ -9,6 +10,7 @@ export default function StageForm({
 }) {
 	return (
 		<div className="mb-3">
+			{/* Hostel selection */}
 			<div className="form-group">
 				<label className="form-label">Hostel:</label>
 				<select
@@ -20,6 +22,7 @@ export default function StageForm({
 					<option value="" disabled>
 						Select a hostel
 					</option>
+					{/* Map over the hostels array and create an option for each one */}
 					{hostels.map((hostel) => (
 						<option key={hostel.id} value={hostel.name}>
 							{hostel.name}
@@ -27,6 +30,7 @@ export default function StageForm({
 					))}
 				</select>
 			</div>
+			{/* Arrival date input */}
 			<div className="form-group">
 				<label className="form-label">Arrival Date:</label>
 				<input
@@ -37,6 +41,7 @@ export default function StageForm({
 					required
 				/>
 			</div>
+			{/* Departure date input */}
 			<div className="form-group">
 				<label className="form-label">Departure Date:</label>
 				<input
@@ -47,6 +52,7 @@ export default function StageForm({
 					required
 				/>
 			</div>
+			{/* Delete stage button */}
 			<button
 				type="button"
 				onClick={() => handleDeleteStage(index)}

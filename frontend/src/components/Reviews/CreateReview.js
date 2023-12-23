@@ -1,14 +1,16 @@
-import React, { useState } from 'react'; // Add useState here
+import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import SelectStar from '../Stars/selectStar';
 import useFormSubmission from './submitReview';
 import validateReview from './validateReview';
 
+// CreateReview is a functional component that renders a form for creating a review
 const CreateReview = ({ hostelId, refetchHostels }) => {
-	const [reviewText, setReviewText] = useState(''); // Initialize to empty string
-	const [rating, setRating] = useState(0); // Initialize to 0
+	const [reviewText, setReviewText] = useState('');
+	const [rating, setRating] = useState(0);
 	const [message, setMessage] = useState('');
 
+	// Custom hook for form submission
 	const { handleSubmitReview } = useFormSubmission(
 		hostelId,
 		reviewText,
@@ -16,17 +18,18 @@ const CreateReview = ({ hostelId, refetchHostels }) => {
 		setMessage
 	);
 
+	// Function to handle form submission with logging
 	const handleSubmitWithLogging = (event) => {
-		const validationError = validateReview(reviewText, rating);
+		const validationError = validateReview(reviewText, rating); // Validate the review
 		if (validationError) {
 			event.preventDefault();
-			setMessage(validationError);
+			setMessage(validationError); // Set the message if there is a validation error
 			return;
 		}
 
 		event.preventDefault();
 		handleSubmitReview(event).then(() => {
-			refetchHostels();
+			refetchHostels(); // Refetch the hostels after the review is submitted
 		});
 	};
 

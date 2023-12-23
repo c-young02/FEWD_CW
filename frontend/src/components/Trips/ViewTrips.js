@@ -7,6 +7,7 @@ import { Modal } from 'react-bootstrap';
 import { deleteTrip } from './deleteTrip';
 import { fetchTrip } from './fetchTrip';
 
+// ViewTrips is a component for viewing and managing trips
 const ViewTrips = ({
 	setSelectedTrip,
 	selectedTrip,
@@ -18,10 +19,12 @@ const ViewTrips = ({
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState('');
 
+	// If there's an error, display it
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
 
+	// Filter the trips based on the search term
 	const filteredTrips = trips.filter(
 		(trip) =>
 			trip.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -30,6 +33,7 @@ const ViewTrips = ({
 			)
 	);
 
+	// Handle deleting a trip
 	const handleDelete = async (id) => {
 		try {
 			await deleteTrip(id);
@@ -42,18 +46,18 @@ const ViewTrips = ({
 		}
 	};
 
+	// Handle editing a trip
 	const handleEdit = async (id) => {
 		try {
 			const tripDetails = await fetchTrip(id);
-			// Set the fetched trip as the trip to edit
 			setTripToEdit(tripDetails);
-			// Set the view to 'create'
 			setView('create');
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
+	// Render a trip
 	const renderTrip = ({ id, ...trip }) => (
 		<Trip
 			key={id}
@@ -63,6 +67,7 @@ const ViewTrips = ({
 		/>
 	);
 
+	// Render the component
 	return (
 		<div className="mt-3">
 			<SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

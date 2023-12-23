@@ -5,9 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import AuthModal from '../Authentication/AuthModal';
 import useModal from '../common/useModal';
 
+// TopNavbar is a functional component that renders a navigation bar at the top of the page
 function TopNavbar({ viewMode, setViewMode }) {
-	const { show, handleClose } = useModal();
+	const { show, handleClose } = useModal(); // Custom hook for modal functionality
 
+	// Function to toggle the view mode between 'hostels' and 'trips'
 	const toggleViewMode = () => {
 		setViewMode(viewMode === 'hostels' ? 'trips' : 'hostels');
 	};

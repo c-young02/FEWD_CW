@@ -6,6 +6,7 @@ import ReviewSection from './ReviewSection';
 import { authenticate } from '../common/Authenticate';
 import CreateReview from '../Reviews/CreateReview';
 
+// ModalBody is a functional component that renders the body of a hostel modal
 const ModalBody = ({
 	hostel,
 	showReviews,
@@ -18,10 +19,10 @@ const ModalBody = ({
 	refetchHostels,
 }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [showCreateReview, setShowCreateReview] = useState(false); // new state
+	const [showCreateReview, setShowCreateReview] = useState(false);
 
 	useEffect(() => {
-		authenticate(setIsLoggedIn);
+		authenticate(setIsLoggedIn); // Authenticate the user when the component mounts
 	}, []);
 
 	const renderTooltip = (props) => (
@@ -46,13 +47,17 @@ const ModalBody = ({
 					</span>
 				</div>
 				{isLoggedIn ? (
+					// If the user is logged in, display a button to toggle the create review form
 					<Button
 						variant="secondary"
 						onClick={() => setShowCreateReview((prev) => !prev)}
 					>
+						{/*Toggle create review form */}
 						{showCreateReview ? 'Hide Create Review' : 'Create Review'}
 					</Button>
 				) : (
+					// If the user is not logged in, display a disabled button
+
 					<OverlayTrigger placement="right" overlay={renderTooltip}>
 						<span className="d-inline-block">
 							<Button variant="secondary" disabled>
@@ -63,9 +68,8 @@ const ModalBody = ({
 				)}
 			</div>
 			{showCreateReview && (
-				<CreateReview hostelId={hostel.id} refetchHostels={refetchHostels} />
+				<CreateReview hostelId={hostel.id} refetchHostels={refetchHostels} /> // Create review form
 			)}
-
 			{showReviews && (
 				<ReviewSection
 					searchField={searchField}
@@ -73,7 +77,7 @@ const ModalBody = ({
 					filteredReviews={filteredReviews}
 					activeKey={activeKey}
 					setActiveKey={setActiveKey}
-				/>
+				/> // Review section
 			)}
 		</Modal.Body>
 	);

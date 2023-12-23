@@ -36,7 +36,7 @@ export default function Trips({ setSelectedTrip, selectedTrip }) {
 						setSelectedTrip={setSelectedTrip}
 						selectedTrip={selectedTrip}
 						setTripToEdit={setTripToEdit}
-						setView={setView} // Pass 'setView' as a prop
+						setView={setView}
 					/>
 				) : (
 					<CreateTrip

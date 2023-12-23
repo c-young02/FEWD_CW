@@ -1,5 +1,6 @@
 import React from 'react';
 
+// HostelInfo is a functional component that renders information about a hostel
 const HostelInfo = ({ hostel }) => {
 	return (
 		<>

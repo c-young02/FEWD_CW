@@ -3,12 +3,14 @@ import { Modal } from 'react-bootstrap';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 
+// HostelModal is a functional component that renders a modal for a hostel
 const HostelModal = ({ show, handleClose, hostel, refetchHostels }) => {
 	const { name, reviews } = hostel;
 	const [showReviews, setShowReviews] = useState(false);
 	const [searchField, setSearchField] = useState('');
 	const [activeKey, setActiveKey] = useState(null);
 
+	// Filter reviews based on the search field
 	const filteredReviews = useMemo(
 		() =>
 			reviews.filter((review) =>
@@ -17,6 +19,7 @@ const HostelModal = ({ show, handleClose, hostel, refetchHostels }) => {
 		[reviews, searchField]
 	);
 
+	// Function to toggle whether to show reviews
 	const toggleReviews = useCallback(() => {
 		setShowReviews((prevShowReviews) => !prevShowReviews);
 	}, []);

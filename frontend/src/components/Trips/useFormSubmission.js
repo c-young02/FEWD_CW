@@ -7,8 +7,7 @@ export default function useFormSubmission(
 	setView
 ) {
 	const handleSubmit = async (event) => {
-		const token = localStorage.getItem('token');
-
+		const token = localStorage.getItem('token'); // Retrieve the token from local storage
 		event.preventDefault();
 
 		// Validate the form data
@@ -16,18 +15,20 @@ export default function useFormSubmission(
 			return;
 		}
 
-		const username = localStorage.getItem('username');
+		const username = localStorage.getItem('username'); // Retrieve the username from local storage
 		if (!username) {
-			setMessage('No username found. Please log in.');
+			setMessage('No username found. Please log in.'); // If no username, set an error message
 			return;
 		}
 
+		// Determine the URL and method based on whether initialData is provided
 		const url = initialData
 			? 'http://localhost:3001/updateTrip'
 			: 'http://localhost:3001/addTrip';
 		const method = initialData ? 'PUT' : 'POST';
 
 		try {
+			// Make the fetch request
 			const response = await fetch(url, {
 				method,
 				headers: {
@@ -42,6 +43,7 @@ export default function useFormSubmission(
 				}),
 			});
 			if (response.ok) {
+				// If the response is ok, set a success message and switch to the 'view' view
 				setMessage(
 					initialData
 						? 'Trip updated successfully!'
@@ -49,11 +51,13 @@ export default function useFormSubmission(
 				);
 				setView('view');
 			} else {
+				// If the response is not ok, set an error message
 				setMessage(
 					initialData ? 'Failed to update trip.' : 'Failed to create trip.'
 				);
 			}
 		} catch (error) {
+			// If an error occurs, log it and set an error message
 			console.error('Error:', error);
 			setMessage('An error occurred.');
 		}

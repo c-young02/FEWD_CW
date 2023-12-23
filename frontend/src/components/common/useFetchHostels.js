@@ -4,10 +4,11 @@ const useFetchHostels = () => {
 	const [hostels, setHostels] = useState([]);
 	const [status, setStatus] = useState('idle');
 	const [error, setError] = useState(null);
-	const [refetchIndex, setRefetchIndex] = useState(0); // For triggering refetch
+	const [refetchIndex, setRefetchIndex] = useState(0);
 
-	const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+	const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001'; // Base URL for API
 
+	// Function to fetch hostels from API
 	const fetchHostels = useCallback(() => {
 		setStatus('loading');
 		setError(null);
@@ -23,13 +24,15 @@ const useFetchHostels = () => {
 				setStatus('error');
 				setError(err);
 			});
-	}, [baseUrl, refetchIndex]); // Add refetchIndex to dependencies
+	}, [baseUrl]);
 
+	// Effect hook to call fetchHostels on component mount and whenever refetchIndex changes
 	useEffect(() => {
 		fetchHostels();
 	}, [fetchHostels]);
 
-	const refetch = () => setRefetchIndex(refetchIndex + 1); // Function to trigger refetch
+	// Function to trigger refetch
+	const refetch = () => setRefetchIndex(refetchIndex + 1);
 
 	return { status, hostels, error, refetch };
 };

@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import ManageReviews from '../Reviews/ManageReviews';
 
+// UserDropdown is a functional component that renders a dropdown menu for the logged-in user
 const UserDropdown = ({ username, handleLogout }) => {
+	// State variable for managing the visibility of the ManageReviews component
 	const [show, setShow] = useState(false);
 
+	// Functions to show and hide the ManageReviews component
 	const handleShow = () => setShow(true);
 	const handleClose = () => setShow(false);
 
+	// Function to show the ManageReviews component when the corresponding menu item is clicked
 	const handleClick = () => {
 		handleShow();
 	};

@@ -1,8 +1,10 @@
 import React from 'react';
 import Hostel from './Hostel';
 
+// DisplayHostels is a functional component that renders a list of hostels
 const DisplayHostels = ({ hostels, onHostelClick, refetchHostels }) => {
 	if (hostels.length === 0) {
+		// If there are no hostels, display a message
 		return <p>No hostels found.</p>;
 	}
 
@@ -17,6 +19,7 @@ const DisplayHostels = ({ hostels, onHostelClick, refetchHostels }) => {
 				</thead>
 				<tbody>
 					{hostels.map((hostel) => (
+						// For each hostel, render a Hostel component
 						<Hostel
 							key={hostel.id}
 							item={hostel}
