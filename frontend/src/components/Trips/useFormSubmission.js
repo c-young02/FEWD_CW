@@ -1,3 +1,6 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 export default function useFormSubmission(
 	initialTitle,
 	initialStages,
@@ -23,8 +26,8 @@ export default function useFormSubmission(
 
 		// Determine the URL and method based on whether initialData is provided
 		const url = initialData
-			? 'http://localhost:3001/updateTrip'
-			: 'http://localhost:3001/addTrip';
+			? `${API_BASE_URL}/updateTrip`
+			: `${API_BASE_URL}/addTrip`;
 		const method = initialData ? 'PUT' : 'POST';
 
 		try {

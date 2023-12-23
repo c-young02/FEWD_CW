@@ -1,3 +1,6 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // useFormSubmission is a custom hook for handling the submission of a review form
 export default function useFormSubmission(
 	hostelId,
@@ -20,7 +23,7 @@ export default function useFormSubmission(
 		}
 
 		// URL and method for the fetch request
-		const url = 'http://localhost:3001/createReview';
+		const url = `${API_BASE_URL}/createReview`;
 		const method = 'PUT';
 
 		try {

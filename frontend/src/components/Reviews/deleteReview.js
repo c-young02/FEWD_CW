@@ -1,10 +1,13 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // This function deletes a review by its ID
 async function deleteReview(id) {
 	// Retrieve the token from local storage
 	const token = localStorage.getItem('token');
 
 	// Send a DELETE request to the server
-	const response = await fetch(`http://localhost:3001/deletereview?id=${id}`, {
+	const response = await fetch(`${API_BASE_URL}/deletereview?id=${id}`, {
 		method: 'DELETE',
 		headers: {
 			Authorization: token, // Include the token in the Authorization header

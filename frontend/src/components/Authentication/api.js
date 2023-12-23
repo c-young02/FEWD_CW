@@ -1,6 +1,9 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // This function sends a POST request to the login endpoint with the user's credentials
 export const loginUser = async (credentials) => {
-	return fetch('http://localhost:3001/login', {
+	return fetch(`${API_BASE_URL}/login`, {
 		method: 'POST', // Specify the request method
 		headers: {
 			'Content-Type': 'application/json', // Set the content type of the request body
@@ -11,7 +14,7 @@ export const loginUser = async (credentials) => {
 
 // This function sends a POST request to the register endpoint with the user's credentials
 export const registerUser = async (credentials) => {
-	return fetch('http://localhost:3001/register', {
+	return fetch(`${API_BASE_URL}/register`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

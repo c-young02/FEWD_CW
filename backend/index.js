@@ -10,9 +10,11 @@ const app = express();
 
 require('./config/passport')(passport);
 
+const REACT_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
+
 app.use(
 	cors({
-		origin: 'http://localhost:3000',
+		origin: REACT_URL,
 	})
 );
 

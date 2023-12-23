@@ -1,3 +1,6 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // useFetchUserReviews is a custom hook for fetching user reviews
 export default function useFetchUserReviews(setReviews) {
 	// fetchUserReviews is an asynchronous function that fetches user reviews
@@ -7,7 +10,7 @@ export default function useFetchUserReviews(setReviews) {
 		const token = localStorage.getItem('token');
 
 		// URL and method for the fetch request
-		const url = `http://localhost:3001/getReviews?username=${username}`;
+		const url = `${API_BASE_URL}/getReviews?username=${username}`;
 		const method = 'GET';
 
 		try {

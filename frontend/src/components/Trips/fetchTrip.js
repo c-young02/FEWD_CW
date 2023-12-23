@@ -1,3 +1,6 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // fetchTrip is an asynchronous function that fetches a trip
 async function fetchTrip(id) {
 	// Retrieve the token and username from local storage
@@ -6,7 +9,7 @@ async function fetchTrip(id) {
 
 	// Send a GET request to the server to fetch the trip
 	const response = await fetch(
-		`http://localhost:3001/trip?username=${username}&id=${id}`,
+		`${API_BASE_URL}/trip?username=${username}&id=${id}`,
 		{
 			method: 'GET',
 			headers: {

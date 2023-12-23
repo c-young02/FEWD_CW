@@ -1,10 +1,13 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // This function checks if the user is authenticated
 export function authenticate(setIsLoggedIn) {
 	// Retrieve the token from local storage
 	const token = localStorage.getItem('token');
 
 	// Send a request to the server to authenticate the user
-	fetch('http://localhost:3001/authenticate', {
+	fetch(`${API_BASE_URL}/authenticate`, {
 		headers: {
 			Authorization: token, // Include the token in the request headers
 		},

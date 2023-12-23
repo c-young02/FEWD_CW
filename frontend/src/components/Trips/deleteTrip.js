@@ -1,3 +1,6 @@
+const API_BASE_URL =
+	process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 // deleteTrip is an asynchronous function that deletes a trip
 async function deleteTrip(id) {
 	// Retrieve the token and username from local storage
@@ -12,7 +15,7 @@ async function deleteTrip(id) {
 
 	// Send a DELETE request to the server to delete the trip
 	const response = await fetch(
-		`http://localhost:3001/deletetrip?username=${username}&id=${id}`,
+		`${API_BASE_URL}/deletetrip?username=${username}&id=${id}`,
 		{
 			method: 'DELETE',
 			headers: {
