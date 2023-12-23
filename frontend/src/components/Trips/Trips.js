@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { authenticate } from '../common/Authenticate';
 import CreateTrip from './ModifyTrip';
 import ViewTrips from './ViewTrips';
+import { Alert } from 'react-bootstrap';
 
 export default function Trips({ setSelectedTrip, selectedTrip }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,35 +15,39 @@ export default function Trips({ setSelectedTrip, selectedTrip }) {
 	}, []);
 
 	useEffect(() => {}, [tripToEdit]);
+	const [message, setMessage] = useState('');
+
 	// If user is logged in, display trips or create trip view based on current view
 	if (isLoggedIn) {
 		return (
 			<div>
-				<div className="text-center">
-					<button
-						onClick={() => {
-							setView(view === 'view' ? 'create' : 'view');
-							if (view === 'view') {
-								setTripToEdit(null);
-							}
-						}}
-						className="btn btn-primary"
-					>
-						{view === 'view' ? 'Create a Trip' : 'Back to Trips'}
-					</button>
-				</div>
+				<button
+					onClick={() => {
+						setView(view === 'view' ? 'create' : 'view');
+						if (view === 'view') {
+							setTripToEdit(null);
+						}
+					}}
+					className="btn btn-primary mb-1"
+				>
+					{view === 'view' ? 'Create a Trip' : 'Back to Trips'}
+				</button>
+				{message && <Alert variant="success">{message}</Alert>}
+
 				{view === 'view' ? (
 					<ViewTrips
 						setSelectedTrip={setSelectedTrip}
 						selectedTrip={selectedTrip}
 						setTripToEdit={setTripToEdit}
 						setView={setView}
+						setMessage={setMessage}
 					/>
 				) : (
 					<CreateTrip
 						initialData={tripToEdit}
 						setView={setView}
 						onDone={() => setTripToEdit(null)}
+						setMessage={setMessage}
 					/>
 				)}
 			</div>

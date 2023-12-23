@@ -56,7 +56,7 @@ export default function StageForm({
 			<button
 				type="button"
 				onClick={() => handleDeleteStage(index)}
-				className="btn btn-danger mt-2"
+				className="btn btn-danger mt-2 mb-3"
 			>
 				Delete Stage
 			</button>

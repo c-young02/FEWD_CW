@@ -3,7 +3,6 @@ import SearchInput from '../common/SearchInput';
 import Trip from './Trip';
 import useFetchTrips from '../common/useFetchTrips';
 import TripRoute from './TripRoute';
-import { Modal } from 'react-bootstrap';
 import { deleteTrip } from './deleteTrip';
 import { fetchTrip } from './fetchTrip';
 
@@ -13,11 +12,10 @@ const ViewTrips = ({
 	selectedTrip,
 	setTripToEdit,
 	setView,
+	setMessage,
 }) => {
 	const [searchField, setSearchTerm] = useState('');
 	const { trips, error, refetch } = useFetchTrips();
-	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const [modalMessage, setModalMessage] = useState('');
 
 	// If there's an error, display it
 	if (error) {
@@ -37,12 +35,10 @@ const ViewTrips = ({
 	const handleDelete = async (id) => {
 		try {
 			await deleteTrip(id);
-			setModalMessage('Trip deleted successfully');
-			setModalIsOpen(true);
+			setMessage('Trip deleted successfully'); // Set message on success
 			refetch();
 		} catch (error) {
-			setModalMessage(`Failed to delete trip: ${error.message}`);
-			setModalIsOpen(true);
+			setMessage(`Failed to delete trip: ${error.message}`); // Set message on failure
 		}
 	};
 
@@ -71,17 +67,11 @@ const ViewTrips = ({
 	return (
 		<div className="mt-3">
 			<SearchInput value={searchField} onChange={setSearchTerm} />
-
 			{filteredTrips.map(renderTrip)}
 			<TripRoute trips={trips} setSelectedTrip={setSelectedTrip} />
 			{selectedTrip && selectedTrip.stages.length <= 1 && (
 				<p>Selected trip is too short to plot route.</p>
 			)}
-			<Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
-				<Modal.Header closeButton>
-					<Modal.Title>{modalMessage}</Modal.Title>
-				</Modal.Header>
-			</Modal>
 		</div>
 	);
 };
