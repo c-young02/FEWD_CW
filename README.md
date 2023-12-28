@@ -2,7 +2,7 @@
 
 ## Description
 
-This project was developed as part of the Front-End Web Development Coursework. It is a website that allows user to view a range of hostels in Scotland and get details on them.
+Developed as part of the Front-End Web Development Coursework, Hostel Seeker is a website enabling users to explore a variety of hostels in Scotland, providing detailed information about each.
 
 ## Installation
 
